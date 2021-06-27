@@ -10,6 +10,7 @@ typedef struct fd
 	int		width;
 	int		prec;
 	char	format;
+	int		ret;
 
 } fd;
 
@@ -120,21 +121,6 @@ int		ft_atoi(const char *str, int *i)
 	return ((int)ret);
 }
 
-void	*ft_memset(void *ptr, int value, size_t num)
-{
-	unsigned int	i;
-	unsigned char	*arr;
-
-	arr = (unsigned char *)ptr;
-	i = 0;
-	while (i < num)
-	{
-		arr[i] = value;
-		i++;
-	}
-	return (ptr);
-}
-
 char	*ft_fielddup(const char *src, int len)
 {
 	char	*str;
@@ -164,7 +150,8 @@ static int			getbuf(long long n, char **ret)
 	int		len;
 
 	if (n < 0)
-		len = recursive(-1 * n) + 1;
+		//len = recursive(-1 * n) + 1;  부호때문에 고침
+		len = recursive(-1 * n);
 	else if (n == 0)
 		len = 1;
 	else
@@ -192,8 +179,8 @@ char				*ft_itoa(int n)
 		ret[len] = (int)(number % 10) + '0';
 		number /= 10;
 	}
-	if (n < 0)
-		ret[0] = '-';
+	// if (n < 0)
+	// 	ret[0] = '-';
 	return (ret);
 }
 
@@ -213,64 +200,152 @@ char	*ft_strcat(char *dest, char *src)
 	return (dest);
 }
 
-int		my_max(int x, int y)
+char	*ft_strncat(char *dest, char *src, unsigned int nb)
+{
+	unsigned int destlen;
+	unsigned int i;
+
+	destlen = ft_strlen(dest);
+	i = 0;
+	while (src[i] != '\0')
+	{
+		if (i == nb)
+		{
+			break ;
+		}
+		dest[destlen + i] = src[i];
+		i++;
+	}
+	dest[destlen + i] = '\0';
+	return (dest);
+}
+
+size_t	ft_strlcpy(char *dest, const char *src, size_t size)
+{
+	size_t i;
+	size_t srclen;
+
+	if (!dest && !src)
+		return (0);
+	srclen = 0;
+	while (src[srclen] != '\0')
+		srclen++;
+	i = 0;
+	while (i + 1 < size && i < srclen)
+	{
+		dest[i] = src[i];
+		i++;
+	}
+	if (size > 0)
+		dest[i] = '\0';
+	return (srclen);
+}
+
+int		max(int x, int y)
 {
 	return ((x > y) ? x : y);
+}
+
+int		min(int x, int y)
+{
+	return ((x < y) ? x : y);
+}
+
+void	*ft_memset(void *ptr, int value, size_t num)
+{
+	unsigned int	i;
+	unsigned char	*arr;
+
+	arr = (unsigned char *)ptr;
+	i = 0;
+	while (i < num)
+	{
+		arr[i] = value;
+		i++;
+	}
+	return (ptr);
 }
 
 void	mypf_printd(int value, fd *info)
 {
 	char	*temp;
+	char	*ret;
 	int		bufsize;
 	int		i;
 	int		j;
-	char	blank;
-	int		vlen;
+	int		len;
 
-	// value 출력시 길이가 몇인지를 알아낸다.
-	vlen = (int)recursive(value);
+	len = (int)recursive(value);
+	// 최종버퍼 할당
+	bufsize = max(max(len, info->prec), info->width);
+	ret = (char*)malloc(sizeof(char) * info->width);
+	ret[info->width] = '\0';
 
-	// bufsize = vlen, width, prec중 Max값을 가진다.
-	bufsize = info->width == 0 ? vlen : info->width;
-	bufsize = bufsize < info->prec ? info->prec : bufsize;
-
-	temp = (char*)malloc(sizeof(char) * (bufsize + 1));
-	temp[bufsize] = '\0';
-
-	blank = ' ';
-	// 아 이거 이해가안됨;;;
-	// if (info->flag == '0') //mypf("나의결과: |%07.5d|end\n", 123);여기서 터짐;
-	// 	blank = '0';
+	// disp길이 설정
+	bufsize = (len < info->prec && info->prec != 0) ? info->prec : len;
+	temp = (char*)malloc(sizeof(char)*bufsize);
+	
 	i = 0;
-	j = -1;
-	/*
-		기본적으로 width에 해당하는 크기의 버퍼가 제공된다.
-		width의 나머지 부분은 ' '으로 채워진다.
-		플래그가 '0'이라면 나머지 부분을 ' '이 아닌 '0'으로 채운다.
-		단, prec값이 존재한다면 나머지 부분을 ' '로 둔다.
-	*/
-
-// 폭 규칙
-	// vlen < width < prec인 경우 어떻게 되지?
-	if (bufsize == info->width)
-		// 빼는 값은 prec > vlen ? prec : vlen 이다....
-		while (++j < bufsize - my_max(vlen, info->prec))
-			temp[i++] = blank;
-// 정밀도 규칙
-	// 자릿수가 출력할 값보다 작을 경우, 정밀도 옵션을 무시한다.
-	j = -1;
-	if (vlen < info->prec)
-	{
-		blank = '0';
-		while (++j < info->prec - vlen)
-			temp[i++] = blank;
-	}
-// value 넣기
+	j = 0;
+	// 정밀도
+	// value가 음수일때 prec의 개수에 -를 세지 않는다....
+	// -는 맨 마지막에 수동으로 붙여야 겠따!
+	if (value < 0)
+		temp[i++] = '-';
+	if (len < info->prec)
+		while (j++ < info->prec - len)
+			temp[i++] = '0';
+	// value 넣기
+	// itoa 함수에 주석을 넣었으니 나중에 잘 수정해둘것.
 	ft_strcat(temp, ft_itoa(value));
-
-
+	//printf("temp: %s\n",temp);
+	// 폭 규칙 (value < 0) 센스 미쳤다,,,
+	if (bufsize < info->width)
+	{
+		if (info->flag != '-')
+            ft_memset(ret, ' ', info->width - bufsize - (value < 0));
+		ft_strncat(ret, temp, bufsize + (value < 0));
+		if (info->flag == '-')
+            ft_memset(ret + len, ' ', info->width - bufsize - (value < 0));
+		write(1, ret, info->width);
+		info->ret = info->width;
+		free(ret);
+		free(temp);
+		return ;
+	}
+	info->ret = bufsize;
 	ft_putstr(temp);
 	free(temp);
+}
+
+void mypf_prints(char *str, fd *info)
+{
+    char	*ret;
+	int		bufsize;
+	int		len;
+    int		i;
+
+    i = 0;
+    len = ft_strlen(str);
+	// 문제의 구간 len 값이 없을때(0) 예외처리를 해줘야 함. 0이상으로 바꿀까?
+    bufsize = (len > info->prec && info->prec != 0) ? info->prec : len;
+
+    if (bufsize < info->width)
+    {
+		ret = (char*)malloc(sizeof(char) * info->width);
+		ret[info->width] = '\0';
+        if (info->flag != '-')
+            ft_memset(ret, ' ', info->width - bufsize);
+        ft_strncat(ret, str, bufsize);
+        if (info->flag == '-')
+            ft_memset(ret + len, ' ', info->width - bufsize);
+		write(1, ret, info->width);
+		info->ret = info->width;
+		free(ret);
+		return ;
+    }
+    write(1, str, bufsize);
+	info->ret = bufsize;
 }
 
 // cspdiuxX%
@@ -286,12 +361,12 @@ void mypf_handle(va_list *ap, fd *info)
 	}
 	else if (info->format == 's')
 	{
-		ft_putstr(va_arg(*ap, char *));
+		mypf_prints(va_arg(*ap, char *), info);
 	}
 
 }
 //%[플래그][폭][.정밀도][길이] 서식지정자
-fd* mypf_init(char *field)
+fd* mypf_init(va_list *ap, char *field)
 {
 	fd		*info;
 	int		i;
@@ -300,19 +375,26 @@ fd* mypf_init(char *field)
 	info->flag = '@';
 	info->width = 0;
 	info->prec = 0;
-
+	info->ret = 0;
 	i = 0;
 	// flag parsing
 	if (is_flag(field[i]))
 		info->flag = field[i++];
 	// width parsing
+	if (info->flag == '*')
+		info->width = va_arg(*ap, int);
 	if (field[i] >= '0' && field[i] <= '9')
 		info->width = ft_atoi(field, &i);
+
 	// prec parsing
 	if (field[i] == '.')
 	{
-		// 정밀도에 음수가 할당되면 무시한다는데 해당 로직을 추가해야할까..?
 		i++;
+		if (field[i] == '*')
+		{
+			info->prec = va_arg(*ap, int);
+			i++;
+		}
 		info->prec = ft_atoi(field, &i);
 		if (info->prec < 0)
 		{
@@ -327,13 +409,15 @@ fd* mypf_init(char *field)
 	return (info);
 }
 
-int mypf(char *one,...)
+int ft_printf(char *one,...)
 {
 	va_list	ap;
+	fd		*info;
 	int		i;
 	int		fieldlen;
-	char	*field;
+	int		ret;
 
+	ret = 0;
 	i = 0;
 	fieldlen = 0;
 	va_start(ap, one);
@@ -343,40 +427,34 @@ int mypf(char *one,...)
 		{
 			while (one[fieldlen + i + 1] != '\0' && !is_format(one[fieldlen + i + 1]))
 				fieldlen++;
-			field = ft_fielddup(one + i + 1, fieldlen);
-			fd *info = mypf_init(field);
-			//printf("flag: %c, width: %d, format: %c, prec: %d\n",info->flag,info->width,info->format,info->prec);
-			i += fieldlen + 1;
+			info = mypf_init(&ap, ft_fielddup(one + i + 1, fieldlen));
+			i += fieldlen + 2;
 			mypf_handle(&ap, info);
+			ret += info->ret;
 			free(info);
+			continue;
 		}
-		else
-			write(1, &one[i], 1);
-		i++;
+		write(1, &one[i++], 1);
+		ret += 1;
 	}
 	va_end(ap);
-	return (1);
+	return (ret);
 }
 
 int main(){
-	//precision only
-	// 음수, *, 플래그0
-	mypf("나의결과: |%07.5d|end\n", 123);
-	printf("실제결과: |%07.5d|end\n", 123);
+	char *s = "42SEOUL";
+	int d = -4242;
+	int a,b;
 
-	mypf("나의결과: |%*.*d|end\n", 7, -2, 123);
-	printf("실제결과: |%*.*d|end\n", 7, -2, 123);
+	a = ft_printf("나의결과: |%4.7d|end\n", d);
+	b =    printf("실제결과: |%4.7d|end\n", d);
+	printf("a: %d, b: %d\n", a, b);
 
-	// mypf("나의결과: |%05d|\n", 123);
-	// printf("실제결과: |%05d|\n", 123);
+	// a = ft_printf("나의결과: |%.4s|end\n", s);
+	// b = printf("실제결과: |%.4s|end\n", s);
+	// printf("a: %d, b: %d\n", a, b);
 
-	//mypf("hello %d name %s",123, "hello");
-	// 사용한 결과 : |[asdf]|end\n
+	// a = ft_printf("나의결과: |%*.*s|end\n", 10, 9, s);
+	// b = printf("실제결과: |%*.*s|end\n", 10, 9, s);
+	// printf("a: %d, b: %d\n", a, b);
 }
-
-/*
-	flag = '0' && prec값존재 => width가 무시됨?
-
-	prec => 출력할 대상의 길이를 정함
-	width => 출력할 버퍼의 길이를 정함
-*/
