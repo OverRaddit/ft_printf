@@ -6,7 +6,7 @@
 /*   By: gshim <gshim@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/03 19:45:16 by gshim             #+#    #+#             */
-/*   Updated: 2021/07/03 21:56:20 by gshim            ###   ########.fr       */
+/*   Updated: 2021/07/03 22:19:35 by gshim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -216,20 +216,14 @@ t_fd*		mypf_init(va_list *ap, char *field)
 	t_fd	*info;
 	int		i;
 
-	info = (t_fd*)malloc(sizeof(t_fd));
+	info = (t_fd*)ft_calloc(1, sizeof(t_fd));
 	// sign을 어디서 쓰는지 찾고 초기값을 1로 하는 이유 생각할것.
-	info->flag = 0;
-	info->width = 0;
-	info->prec = 0;
-	info->ret = 0;
-	info->precbit = 0;
 	info->sign = 1;
-	info->digit = 0;
 	i = 0;
 	// flag parsing
 	while (is_flag(field[i]))
 	{
-		info->flag = (info->flag == '-') ? '-' : field[i++];
+		info->flag = (info->flag == '-') ? '-' : field[i];
 		i++;
 	}
 

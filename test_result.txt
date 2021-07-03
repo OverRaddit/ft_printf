@@ -125,64 +125,64 @@ gcc -Wall -Wextra -Werror -c ft_printf_util3.c -o ft_printf_util3.o
 gcc -Wall -Wextra -Werror -c ft_printf_util4.c -o ft_printf_util4.o
 gcc -Wall -Wextra -Werror -c ft_printf.c -o ft_printf.o
 ar rc libftprintf.a ft_printf_util1.o ft_printf_util2.o ft_printf_util3.o ft_printf_util4.o ft_printf.o
-1 [0x7ffee351e880]18					      |	1 [0x7ffeeeea4880]18
-1.1 [0x7ffee351e880]20					      |	1.1 [0x7ffeeeea4880]20
-3 ! [0x7ffee351e880]20					      |	3 ! [0x7ffeeeea4880]20
-3.4 ![0x7ffee351e880]21					      |	3.4 ![0x7ffeeeea4880]21
-5 [0x7ffee351e880]18					      |	5 [0x7ffeeeea4880]18
-10 [0x7ffee351e880                                            |	10 [0x7ffeeeea4880                                           
-10 [0x7ffee351e880]19					      |	10 [0x7ffeeeea4880]19
-10 [0x7ffee351e880]19					      |	10 [0x7ffeeeea4880]19
-10 [0x7ffee351e880]19					      |	10 [0x7ffeeeea4880]19
-10 [0x7ffee351e880]19					      |	10 [0x7ffeeeea4880]19
+1 [0x7ffee3bba880]18					      |	1 [0x7ffeeaea7880]18
+1.1 [0x7ffee3bba880]20					      |	1.1 [0x7ffeeaea7880]20
+3 ! [0x7ffee3bba880]20					      |	3 ! [0x7ffeeaea7880]20
+3.4 ![0x7ffee3bba880]21					      |	3.4 ![0x7ffeeaea7880]21
+5 [0x7ffee3bba880]18					      |	5 [0x7ffeeaea7880]18
+10 [0x7ffee3bba880                                            |	10 [0x7ffeeaea7880                                           
+10 [0x7ffee3bba880]19					      |	10 [0x7ffeeaea7880]19
+10 [0x7ffee3bba880]19					      |	10 [0x7ffeeaea7880]19
+10 [0x7ffee3bba880]19					      |	10 [0x7ffeeaea7880]19
+10 [0x7ffee3bba880]19					      |	10 [0x7ffeeaea7880]19
 10 [                                                          |	10 [                                                         
 10 [                                                          |	10 [                                                         
-1 [0x7ffee351e884]18					      |	1 [0x7ffeeeea4884]18
-1.1 [0x7ffee351e884]20					      |	1.1 [0x7ffeeeea4884]20
-3 ! [0x7ffee351e884]20					      |	3 ! [0x7ffeeeea4884]20
-3.4 ![0x7ffee351e884]21					      |	3.4 ![0x7ffeeeea4884]21
-5 [0x7ffee351e884]18					      |	5 [0x7ffeeeea4884]18
-10 [0x7ffee351e884                                            |	10 [0x7ffeeeea4884                                           
-10 [0x7ffee351e884]19					      |	10 [0x7ffeeeea4884]19
-10 [0x7ffee351e884]19					      |	10 [0x7ffeeeea4884]19
-10 [0x7ffee351e884]19					      |	10 [0x7ffeeeea4884]19
-10 [0x7ffee351e884]19					      |	10 [0x7ffeeeea4884]19
+1 [0x7ffee3bba884]18					      |	1 [0x7ffeeaea7884]18
+1.1 [0x7ffee3bba884]20					      |	1.1 [0x7ffeeaea7884]20
+3 ! [0x7ffee3bba884]20					      |	3 ! [0x7ffeeaea7884]20
+3.4 ![0x7ffee3bba884]21					      |	3.4 ![0x7ffeeaea7884]21
+5 [0x7ffee3bba884]18					      |	5 [0x7ffeeaea7884]18
+10 [0x7ffee3bba884                                            |	10 [0x7ffeeaea7884                                           
+10 [0x7ffee3bba884]19					      |	10 [0x7ffeeaea7884]19
+10 [0x7ffee3bba884]19					      |	10 [0x7ffeeaea7884]19
+10 [0x7ffee3bba884]19					      |	10 [0x7ffeeaea7884]19
+10 [0x7ffee3bba884]19					      |	10 [0x7ffeeaea7884]19
 10 [                                                          |	10 [                                                         
 10 [                                                          |	10 [                                                         
-1 [0x7ffee351e888]18					      |	1 [0x7ffeeeea4888]18
-1.1 [0x7ffee351e888]20					      |	1.1 [0x7ffeeeea4888]20
-3 ! [0x7ffee351e888]20					      |	3 ! [0x7ffeeeea4888]20
-3.4 ![0x7ffee351e888]21					      |	3.4 ![0x7ffeeeea4888]21
-5 [0x7ffee351e888]18					      |	5 [0x7ffeeeea4888]18
-10 [0x7ffee351e888                                            |	10 [0x7ffeeeea4888                                           
-10 [0x7ffee351e888]19					      |	10 [0x7ffeeeea4888]19
-10 [0x7ffee351e888]19					      |	10 [0x7ffeeeea4888]19
-10 [0x7ffee351e888]19					      |	10 [0x7ffeeeea4888]19
-10 [0x7ffee351e888]19					      |	10 [0x7ffeeeea4888]19
+1 [0x7ffee3bba888]18					      |	1 [0x7ffeeaea7888]18
+1.1 [0x7ffee3bba888]20					      |	1.1 [0x7ffeeaea7888]20
+3 ! [0x7ffee3bba888]20					      |	3 ! [0x7ffeeaea7888]20
+3.4 ![0x7ffee3bba888]21					      |	3.4 ![0x7ffeeaea7888]21
+5 [0x7ffee3bba888]18					      |	5 [0x7ffeeaea7888]18
+10 [0x7ffee3bba888                                            |	10 [0x7ffeeaea7888                                           
+10 [0x7ffee3bba888]19					      |	10 [0x7ffeeaea7888]19
+10 [0x7ffee3bba888]19					      |	10 [0x7ffeeaea7888]19
+10 [0x7ffee3bba888]19					      |	10 [0x7ffeeaea7888]19
+10 [0x7ffee3bba888]19					      |	10 [0x7ffeeaea7888]19
 10 [                                                          |	10 [                                                         
 10 [                                                          |	10 [                                                         
-1 [0x7ffee351e88c]18					      |	1 [0x7ffeeeea488c]18
-1.1 [0x7ffee351e88c]20					      |	1.1 [0x7ffeeeea488c]20
-3 ! [0x7ffee351e88c]20					      |	3 ! [0x7ffeeeea488c]20
-3.4 ![0x7ffee351e88c]21					      |	3.4 ![0x7ffeeeea488c]21
-5 [0x7ffee351e88c]18					      |	5 [0x7ffeeeea488c]18
-10 [0x7ffee351e88c                                            |	10 [0x7ffeeeea488c                                           
-10 [0x7ffee351e88c]19					      |	10 [0x7ffeeeea488c]19
-10 [0x7ffee351e88c]19					      |	10 [0x7ffeeeea488c]19
-10 [0x7ffee351e88c]19					      |	10 [0x7ffeeeea488c]19
-10 [0x7ffee351e88c]19					      |	10 [0x7ffeeeea488c]19
+1 [0x7ffee3bba88c]18					      |	1 [0x7ffeeaea788c]18
+1.1 [0x7ffee3bba88c]20					      |	1.1 [0x7ffeeaea788c]20
+3 ! [0x7ffee3bba88c]20					      |	3 ! [0x7ffeeaea788c]20
+3.4 ![0x7ffee3bba88c]21					      |	3.4 ![0x7ffeeaea788c]21
+5 [0x7ffee3bba88c]18					      |	5 [0x7ffeeaea788c]18
+10 [0x7ffee3bba88c                                            |	10 [0x7ffeeaea788c                                           
+10 [0x7ffee3bba88c]19					      |	10 [0x7ffeeaea788c]19
+10 [0x7ffee3bba88c]19					      |	10 [0x7ffeeaea788c]19
+10 [0x7ffee3bba88c]19					      |	10 [0x7ffeeaea788c]19
+10 [0x7ffee3bba88c]19					      |	10 [0x7ffeeaea788c]19
 10 [                                                          |	10 [                                                         
 10 [                                                          |	10 [                                                         
-1 [0x7ffee351e890]18					      |	1 [0x7ffeeeea4890]18
-1.1 [0x7ffee351e890]20					      |	1.1 [0x7ffeeeea4890]20
-3 ! [0x7ffee351e890]20					      |	3 ! [0x7ffeeeea4890]20
-3.4 ![0x7ffee351e890]21					      |	3.4 ![0x7ffeeeea4890]21
-5 [0x7ffee351e890]18					      |	5 [0x7ffeeeea4890]18
-10 [0x7ffee351e890                                            |	10 [0x7ffeeeea4890                                           
-10 [0x7ffee351e890]19					      |	10 [0x7ffeeeea4890]19
-10 [0x7ffee351e890]19					      |	10 [0x7ffeeeea4890]19
-10 [0x7ffee351e890]19					      |	10 [0x7ffeeeea4890]19
-10 [0x7ffee351e890]19					      |	10 [0x7ffeeeea4890]19
+1 [0x7ffee3bba890]18					      |	1 [0x7ffeeaea7890]18
+1.1 [0x7ffee3bba890]20					      |	1.1 [0x7ffeeaea7890]20
+3 ! [0x7ffee3bba890]20					      |	3 ! [0x7ffeeaea7890]20
+3.4 ![0x7ffee3bba890]21					      |	3.4 ![0x7ffeeaea7890]21
+5 [0x7ffee3bba890]18					      |	5 [0x7ffeeaea7890]18
+10 [0x7ffee3bba890                                            |	10 [0x7ffeeaea7890                                           
+10 [0x7ffee3bba890]19					      |	10 [0x7ffeeaea7890]19
+10 [0x7ffee3bba890]19					      |	10 [0x7ffeeaea7890]19
+10 [0x7ffee3bba890]19					      |	10 [0x7ffeeaea7890]19
+10 [0x7ffee3bba890]19					      |	10 [0x7ffeeaea7890]19
 10 [                                                          |	10 [                                                         
 10 [                                                          |	10 [                                                         
  							      |
@@ -203,13 +203,6 @@ rm -f ft_printf_util1.o ft_printf_util2.o ft_printf_util3.o ft_printf_util4.o ft
 ######### 42TESTERS-PRINTF ##########
 #####42TESTS-PRINTF#####
 #########PFT##########
-Test  10 (pct_5wljzp) : FAILED.$
-    First line of code: {return test("%-05%");}$
-      expected output : "%    "$
-      your output     : "0000%"$
-      expected (nonprintable as hex) : "%    "$
-      actual   (nonprintable as hex) : "0000%"$
-$
 Test 647 (moul_star_2) : FAILED.$
     First line of code: {return test("%% *.5i 42 == |% *.5i|$
 ", 4, 42);}$
@@ -237,9 +230,9 @@ $
 Test 4194 (notintsubject_o_neg_prec_star_03) : FAILED.$
     First line of code: {return test("%.*o", -1, 0);}$
       expected output : "0"$
-      your output     : "8889e6c"$
+      your output     : "14c36e6c"$
       expected (nonprintable as hex) : "0"$
-      actual   (nonprintable as hex) : "8889e6c"$
+      actual   (nonprintable as hex) : "14c36e6c"$
 $
 #########PFT_2019##########
 WARNING: The return values reported here may be bugged on some systems.$
@@ -250,15 +243,6 @@ WARNING: The return values reported here may be bugged on some systems.$
           This bug does not affect the pass/fail result of a test, nor$
           the function output--only the reported return value.$
 $
-$
-Test  10 (pct_5wljzp) : FAILED.$
-    First line of code: {return test("%-05%");}$
-      expected return value : 5$
-      your return value     : 5$
-      expected output : "%    "$
-      your output     : "0000%"$
-      expected (nonprintable as hex) : "%    "$
-      actual   (nonprintable as hex) : "0000%"$
 $
 Test  11 (nocrash_nullspec_basic) : FAILED.$
     (nocrash test: automatically passes provided no unexpected failure)$
@@ -292,15 +276,6 @@ Test 130 (s_undefbehav_0_width_9) : FAILED.$
       expected output : "000hi low"$
       your output     : "   hi low"$
       expected (nonprintable as hex) : "000hi low"$
-      actual   (nonprintable as hex) : "   hi low"$
-$
-Test 132 (s_undefbehav_lj_0_width_9) : FAILED.$
-    First line of code: {return test("%-09s", s_hidden);}$
-      expected return value : 9$
-      your return value     : 9$
-      expected output : "hi low   "$
-      your output     : "   hi low"$
-      expected (nonprintable as hex) : "hi low   "$
       actual   (nonprintable as hex) : "   hi low"$
 $
 Test 432 (p_ftfc_literal_9w_prec2_undefbehav) : FAILED.$
@@ -384,8 +359,4 @@ $
 ######### printf_lover_v2 ##########
 ######### printf-tester ##########
 ######### ft_printf_test ##########
-- [OUTPUT] ft_printf("%-05%")
-   expected: "%    "
-   actual:   "0000%"
-
 ######### Test-42 ##########
