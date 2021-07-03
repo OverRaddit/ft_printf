@@ -53,7 +53,7 @@ size_t	ft_strlen(const char *str)
 		i++;
 	return (i);
 }
-
+  
 void	ft_putnbr(int n)
 {
 	int		i;
@@ -282,7 +282,7 @@ void	mypf_printd(int value, fd *info)
 	ret[info->width] = '\0';
 
 	// disp길이 설정
-	bufsize = (len < info->prec && info->prec != 0) ? info->prec : len;
+	bufsize = (len < info->prec && info->prec != 0) ? info->prec + (value < 0) : len + (value < 0);
 	temp = (char*)malloc(sizeof(char)*bufsize);
 	
 	i = 0;
@@ -303,10 +303,10 @@ void	mypf_printd(int value, fd *info)
 	if (bufsize < info->width)
 	{
 		if (info->flag != '-')
-            ft_memset(ret, ' ', info->width - bufsize - (value < 0));
-		ft_strncat(ret, temp, bufsize + (value < 0));
+            ft_memset(ret, ' ', info->width - bufsize);
+		ft_strncat(ret, temp, bufsize);
 		if (info->flag == '-')
-            ft_memset(ret + len, ' ', info->width - bufsize - (value < 0));
+            ft_memset(ret + bufsize, ' ', info->width - bufsize);
 		write(1, ret, info->width);
 		info->ret = info->width;
 		free(ret);
@@ -325,6 +325,8 @@ void mypf_prints(char *str, fd *info)
 	int		len;
     int		i;
 
+	if (str == 0)
+		str = "(null)";
     i = 0;
     len = ft_strlen(str);
 	// 문제의 구간 len 값이 없을때(0) 예외처리를 해줘야 함. 0이상으로 바꿀까?
@@ -372,40 +374,53 @@ fd* mypf_init(va_list *ap, char *field)
 	int		i;
 
 	info = (fd*)malloc(sizeof(fd));
-	info->flag = '@';
-	info->width = 0;
-	info->prec = 0;
-	info->ret = 0;
+	ft_memset(info, 0, sizeof(fd));
 	i = 0;
 	// flag parsing
 	if (is_flag(field[i]))
 		info->flag = field[i++];
-	// width parsing
 	if (info->flag == '*')
 		info->width = va_arg(*ap, int);
+	// width parsing
+		// width에 *이 오는 경우
+	if (field[i] == '*')
+	{
+		info->width = va_arg(*ap, int);
+		i++;
+	}
 	if (field[i] >= '0' && field[i] <= '9')
 		info->width = ft_atoi(field, &i);
-
+	// printf("->width: %d, prec: %d, flag: %c\n",info->width,info->prec,info->flag);
+	// printf("field:%c\n",field[i]);
 	// prec parsing
 	if (field[i] == '.')
 	{
+		//printf("%s\n",field + i);
 		i++;
 		if (field[i] == '*')
 		{
 			info->prec = va_arg(*ap, int);
 			i++;
 		}
-		info->prec = ft_atoi(field, &i);
-		if (info->prec < 0)
-		{
-			// 이것이 *로 넘겼을때는 적용이 안되는데,,,, 어휴
-			info->width = 0;
-			info->prec = 0;
-		}
+		else
+			info->prec = ft_atoi(field, &i);
+		//printf("%s\n",field + i);
 	}
+	//printf("->width: %d, prec: %d, flag: %c\n",info->width,info->prec,info->flag);
+	//printf("%s\n",field + i);
 	// format parsing
 	if (is_format(field[i]))
 		info->format = field[i];
+	
+	// 음수처리
+	if (info->width < 0)
+	{
+		info->flag = '-';
+		info->width *= -1;
+	}
+	if (info->prec < 0)
+		info->prec = 0;
+	//printf("->width: %d, prec: %d, flag: %c, format: %c\n",info->width,info->prec,info->flag,info->format);
 	return (info);
 }
 
@@ -443,16 +458,17 @@ int ft_printf(char *one,...)
 
 int main(){
 	char *s = "42SEOUL";
+	s = 0;
 	int d = -4242;
 	int a,b;
 
-	a = ft_printf("나의결과: |%4.7d|end\n", d);
-	b =    printf("실제결과: |%4.7d|end\n", d);
-	printf("a: %d, b: %d\n", a, b);
-
-	// a = ft_printf("나의결과: |%.4s|end\n", s);
-	// b = printf("실제결과: |%.4s|end\n", s);
+	// a = ft_printf("나의결과: |%0*.*d|end\n", -7, 5, d);
+	// b =    printf("실제결과: |%0*.*d|end\n", -7, 5, d);
 	// printf("a: %d, b: %d\n", a, b);
+
+	a = ft_printf("나의결과: |%8s|end\n", s);
+	b = printf("실제결과: |%8s|end\n", s);
+	printf("a: %d, b: %d\n", a, b);
 
 	// a = ft_printf("나의결과: |%*.*s|end\n", 10, 9, s);
 	// b = printf("실제결과: |%*.*s|end\n", 10, 9, s);
