@@ -1,278 +1,19 @@
-#include <stdio.h>
-#include <unistd.h>
-#include <stdarg.h>
-#include <stdlib.h>
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_printf.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: gshim <gshim@student.42.fr>                +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/07/03 19:45:16 by gshim             #+#    #+#             */
+/*   Updated: 2021/07/03 21:56:20 by gshim            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "ft_printf.h"
 
-/*
-typedef struct t_fd
-{
-	char	flag;
-	// 출력하는 길이를 뜻한다. 음수면 왼쪽정렬, 양수면 오른쪽정렬이다
-	int		width;
-	int		prec;
-	char	format;
-	int		ret;
-	int		precbit;
-	int		zeroflag;
-} t_fd;
 
-int		is_format(char c)
-{
-	char *formats = "cspdiuxX%";
-
-	// 성능 개선을 위한 알파벳체크
-	if (!(c >= 'a' && c <= 'z') && (c >= 'A' && c <= 'Z'))
-		return (0);
-	while (*formats)
-	{
-		if (c == *formats)
-			return (1);
-		formats++;
-	}
-	return (0);
-}
-
-int		is_flag(char c)
-{
-	// .은 다른부분에서 파싱 가능하니 한번 빼봅시다.
-	char *flags = "-0*";
-
-	while (*flags)
-	{
-		if (c == *flags)
-			return (1);
-		flags++;
-	}
-	return (0);
-}
-
-size_t	ft_strlen(const char *str)
-{
-	size_t i;
-
-	i = 0;
-	while (str[i] != '\0')
-		i++;
-	return (i);
-}
-
-void	ft_putnbr(int n)
-{
-	int		i;
-	char	buf[11];
-
-	if (n < 0)
-	{
-		if (n == -2147483648)
-		{
-			write(1, "-2147483648", 11);
-			return ;
-		}
-		write(1, "-", 1);
-		n = n * -1;
-	}
-	i = -1;
-	if (n == 0)
-		write(1, "0", 1);
-	while (n > 0)
-	{
-		buf[++i] = (n % 10 + 48);
-		n = n / 10;
-	}
-	while (i >= 0)
-	{
-		write(1, &buf[i--], 1);
-	}
-}
-
-void	ft_putchar(char c)
-{
-	write(1, &c, 1);
-}
-
-void	ft_putstr(char *s)
-{
-	if (!s)
-		return ;
-	write(1, s, ft_strlen(s));
-}
-
-#include <limits.h>
-int		ft_atoi(const char *str, int *i)
-{
-	char		*s;
-	long long	ret;
-	int			sign;
-
-	s = (char *)str;
-	ret = 0;
-	while ((9 <= s[*i] && s[*i] <= 13) || s[*i] == 32)
-		(*i)++;
-	if (s[*i] == '-' || s[*i] == '+')
-		sign = (s[(*i)++] == '-') ? -1 : 1;
-	else
-		sign = 1;
-	while (s[*i] != '\0' && (s[*i] >= '0' && s[*i] <= '9'))
-	{
-		ret = (ret * 10) + (s[*i] - '0');
-		if (!(INT_MIN <= ret * sign && ret * sign <= INT_MAX))
-			return ((sign < 0) ? 0 : -1);
-		(*i)++;
-	}
-	ret *= sign;
-	return ((int)ret);
-}
-
-char	*ft_fielddup(const char *src, int len)
-{
-	char	*str;
-
-	while (src[len] != '\0' && !is_format(src[len]))
-		len++;
-	if (!(str = (char *)malloc(sizeof(char) * (len + 2))))
-		return (0);
-	str[len + 1] = '\0';
-	while (len >= 0)
-	{
-		str[len] = src[len];
-		len--;
-	}
-	return (str);
-}
-
-static long long	recursive(long long n)
-{
-	if (n == 0)
-		return (0);
-	return (1 + recursive(n / 10));
-}
-
-static int			getbuf(long long n, char **ret)
-{
-	int		len;
-
-	if (n < 0)
-		//len = recursive(-1 * n) + 1;  부호때문에 고침
-		len = recursive(-1 * n);
-	else if (n == 0)
-		len = 1;
-	else
-		len = recursive(n);
-	if (!(*ret = (char*)malloc(sizeof(char) * (len + 1))))
-		return (-1);
-	(*ret)[len] = '\0';
-	return (len);
-}
-
-char	*ft_itoa(int n)
-{
-	int			len;
-	long long	number;
-	char		*ret;
-
-	number = (long long)n;
-	len = getbuf(number, &ret);
-	if (len == -1)
-		return (0);
-	if (n < 0)
-		number *= -1;
-	while (--len >= 0)
-	{
-		ret[len] = (int)(number % 10) + '0';
-		number /= 10;
-	}
-	// if (n < 0)
-	// 	ret[0] = '-';
-	return (ret);
-}
-
-char	*ft_strcat(char *dest, char *src)
-{
-	size_t destlen;
-	size_t i;
-
-	destlen = ft_strlen(dest);
-	i = 0;
-	while (src[i] != '\0')
-	{
-		dest[destlen + i] = src[i];
-		i++;
-	}
-	dest[destlen + i] = '\0';
-	return (dest);
-}
-
-char	*ft_strncat(char *dest, char *src, unsigned int nb)
-{
-	unsigned int destlen;
-	unsigned int i;
-
-	destlen = ft_strlen(dest);
-	i = 0;
-	while (src[i] != '\0')
-	{
-		if (i == nb)
-		{
-			break ;
-		}
-		dest[destlen + i] = src[i];
-		i++;
-	}
-	dest[destlen + i] = '\0';
-	return (dest);
-}
-
-size_t	ft_strlcpy(char *dest, const char *src, size_t size)
-{
-	size_t i;
-	size_t srclen;
-
-	if (!dest && !src)
-		return (0);
-	srclen = 0;
-	while (src[srclen] != '\0')
-		srclen++;
-	i = 0;
-	while (i + 1 < size && i < srclen)
-	{
-		dest[i] = src[i];
-		i++;
-	}
-	if (size > 0)
-		dest[i] = '\0';
-	return (srclen);
-}
-
-int		max(int x, int y)
-{
-	return ((x > y) ? x : y);
-}
-
-int		min(int x, int y)
-{
-	return ((x < y) ? x : y);
-}
-
-void	*ft_memset(void *ptr, int value, size_t num)
-{
-	unsigned int	i;
-	unsigned char	*arr;
-
-	arr = (unsigned char *)ptr;
-	i = 0;
-	while (i < num)
-	{
-		arr[i] = value;
-		i++;
-	}
-	return (ptr);
-}
-*/
-
-//=====================================================================
-void	mypf_printd(int value, t_fd *info)
+void	mypf_printd(unsigned long long value, t_fd *info)
 {
 	char	*temp;
 	char	*ret;
@@ -283,27 +24,24 @@ void	mypf_printd(int value, t_fd *info)
 	char	blank;
 
 	// prec이 존재하면 '0'플래그는 무시된다.
+	info->flag = (info->flag == '0' && info->precbit == 1) ? ' ' : info->flag;
 	blank = (info->prec == 0) && (info->flag == '0') ? '0' : ' ';
 
-	len = (value == 0) ? 1 : (int)recursive(value);
+	len = (value == 0) ? 1 : recursive(value, info->baselen);
 	// 최종버퍼 할당
 	bufsize = max(max(len, info->prec), info->width);
 
-	// 이거 그냥 calloc 써버릴까
-	ret = (char*)malloc(sizeof(char) * info->width);
-	ret[0] = '\0';
-	ret[info->width] = '\0';
+	ret = (char*)ft_calloc(info->width, sizeof(char));
 
 	// disp길이 설정(prec적용 후의 길이)
-	bufsize = (len < info->prec && info->prec != 0) ? info->prec + (value < 0) : len + (value < 0);
-	temp = (char*)malloc(sizeof(char) * (bufsize + 1));
-
+	bufsize = (len < info->prec && info->prec != 0) ? info->prec : len;
+	bufsize = (!info->sign) ? bufsize + 1 : bufsize;
+	temp = (char*)ft_calloc(bufsize + 1, sizeof(char));
 	i = 0;
 	j = 0;
 
 	// 정밀도
-	// -는 맨 마지막에 수동으로 붙여야 겠따!
-	if (blank == ' ' && value < 0)
+	if (blank == ' ' && !info->sign)
 		temp[i++] = '-';
 	if (len < info->prec)
 		while (j++ < info->prec - len)
@@ -315,16 +53,19 @@ void	mypf_printd(int value, t_fd *info)
 	if (value == 0 && info->precbit == 1 && info->prec == 0)
 		bufsize--;
 	else
-		ft_strcat(temp, ft_itoa(value));
+		ft_strcat(temp, ft_uitoa(value, info->digit, info->baselen));
+	//printf("1.<%s>\n",ret);
 	if (bufsize < info->width)
 	{
-		if (blank == '0' && value < 0)
+		if (blank == '0' && !info->sign)
 			ret[0] = '-';
 		if (info->flag != '-')
 			ft_memset(ret + (ret[0] == '-'), blank, info->width - bufsize);
 		ft_strncat(ret, temp, bufsize);
+		//printf("2.<%s>\n",ret);
 		if (info->flag == '-')
 			ft_memset(ret + bufsize, blank, info->width - bufsize);
+		//printf("3.<%s>\n",ret);
 		write(1, ret, info->width);
 		info->ret = info->width;
 		free(ret);
@@ -332,9 +73,9 @@ void	mypf_printd(int value, t_fd *info)
 		return ;
 	}
 	info->ret = bufsize;
-	if (blank != ' ' && value < 0)
+	if (blank != ' ' && !info->sign)
 		write(1, "-", 1);
-	ft_putstr(temp);
+	write(1, temp, ft_strlen(temp));
 	free(temp);
 }
 
@@ -344,30 +85,26 @@ void	mypf_printc(char c, t_fd *info)
 	int		bufsize;
 	int		len;
 	int		i;
+	char	blank;
 
 
+	blank = (info->flag == '0' && info->format == '%') ? '0' : ' ';
 	i = 0;
 	len = 1;
-	// 문제의 구간 len 값이 없을때(0) 예외처리를 해줘야 함. 0이상으로 바꿀까?
 	bufsize = (len > info->prec && info->prec > 0) ? info->prec : len;
-	//printf("bufsize: %d, width: %d\n",bufsize,info->width);
 	if (bufsize < info->width)
 	{
-		ret = (char*)malloc(sizeof(char) * info->width);
-		ret[info->width] = '\0';
-
+		ret = (char*)ft_calloc(info->width, sizeof(char));
 		if (info->flag != '-')
-			ft_memset(ret, ' ', info->width - bufsize);
-
-		ft_strncat(ret, str, bufsize);
-
+			ft_memset(ret, blank, info->width - bufsize);
+		ft_strncat(ret, &c, bufsize);
 		if (info->flag == '-')
 			ft_memset(ret + bufsize, ' ', info->width - bufsize);
 		info->ret = write(1, ret, info->width);
 		free(ret);
 		return ;
 	}
-	write(1, str, bufsize);
+	write(1, &c, bufsize);
 	info->ret = bufsize;
 }
 
@@ -379,10 +116,10 @@ void	mypf_prints(char *str, t_fd *info)
 	int		i;
 
 	// .s, .0s 같이 나오면 출력하지 않는다.
-	if (info->precbit == 1 && info->prec == 0)
-		str = "";
 	if (str == 0)
 		str = "(null)";
+	if (info->precbit == 1 && info->prec == 0 && info->format == 's')
+		str = "";
 	i = 0;
 	len = ft_strlen(str);
 	// 문제의 구간 len 값이 없을때(0) 예외처리를 해줘야 함. 0이상으로 바꿀까?
@@ -390,9 +127,7 @@ void	mypf_prints(char *str, t_fd *info)
 	//printf("bufsize: %d, width: %d\n",bufsize,info->width);
 	if (bufsize < info->width)
 	{
-		ret = (char*)malloc(sizeof(char) * info->width);
-		ret[info->width] = '\0';
-
+		ret = (char*)ft_calloc(info->width, sizeof(char));
 		if (info->flag != '-')
 			ft_memset(ret, ' ', info->width - bufsize);
 
@@ -408,46 +143,95 @@ void	mypf_prints(char *str, t_fd *info)
 	info->ret = bufsize;
 }
 
-// cspdiuxX%
+char	*ft_xtoa(unsigned long long number)
+{
+	int			len;
+	char		*ret;
+	char		*base;
+
+	base = "0123456789abcdef";
+	len = (number == 0) ? 1 + 2 : recursive(number, 16) + 2;
+	if (!(ret = malloc(sizeof(char) * (len + 1))))
+		return (0);
+	ret[0] = '\0';
+	ret[len] = '\0';
+	ft_strncat(ret, "0x", 2);
+	while (--len >= 2)
+	{
+		ret[len] = base[number % 16];
+		number /= 16;
+	}
+	return (ret);
+}
+
+void	mypf_printp(unsigned long long n, t_fd *info)
+{
+	char	*temp;
+	int		len;
+
+	// 0x에 해당하는 길이를 추가로 더해줘야 한다.
+	len = (n == 0) ? 1 + 2 : recursive(n, 16) + 2;
+	temp = ft_calloc(len + 1, sizeof(char));
+
+	ft_strncat(temp, ft_xtoa(n), len);
+	if (n == 0 && info->precbit == 1 && info->prec == 0 && info->format == 'p')
+	{
+		mypf_prints("0x", info);
+		free(temp);
+		return ;
+	}
+	mypf_prints(temp, info);
+	free(temp);
+}
+
 void	mypf_handle(va_list *ap, t_fd *info)
 {
-	if (info->format == 'd')
+	long long	num;
+
+	if (info->format == 'd' || info->format == 'i')
 	{
-		mypf_printd(va_arg(*ap, int), info);
+		num = va_arg(*ap, int);
+		if (num < 0)
+		{
+			info->sign = 0;
+			num *= -1;
+		}
+		mypf_printd(num, info);
 	}
 	else if (info->format == 'c')
-	{
-		char arr[2];
-		arr[0] = va_arg(*ap, int);
-		arr[1] = '\0';
-
-		mypf_printc(arr, info);
-	}
+		mypf_printc(va_arg(*ap, int), info);
+	else if (info->format == '%')
+		mypf_printc('%', info);
 	else if (info->format == 's')
-	{
 		mypf_prints(va_arg(*ap, char *), info);
-	}
-
+	else if (info->format == 'p')
+		mypf_printp(va_arg(*ap, unsigned long long), info);
+	else if (info->format == 'u' || info->format == 'x' || info->format == 'X')
+		mypf_printd(va_arg(*ap, unsigned int), info);
 }
 
 //%[플래그][폭][.정밀도][길이] 서식지정자
 t_fd*		mypf_init(va_list *ap, char *field)
 {
-	t_fd		*info;
+	t_fd	*info;
 	int		i;
 
 	info = (t_fd*)malloc(sizeof(t_fd));
-
-	// memset으로 info전체를 0값으로 하는 것도 괜찮을듯.
+	// sign을 어디서 쓰는지 찾고 초기값을 1로 하는 이유 생각할것.
 	info->flag = 0;
 	info->width = 0;
 	info->prec = 0;
 	info->ret = 0;
 	info->precbit = 0;
+	info->sign = 1;
+	info->digit = 0;
 	i = 0;
 	// flag parsing
-	if (is_flag(field[i]))
-		info->flag = field[i++];
+	while (is_flag(field[i]))
+	{
+		info->flag = (info->flag == '-') ? '-' : field[i++];
+		i++;
+	}
 
 	// width parsing
 	if (field[i] == '*')
@@ -455,10 +239,7 @@ t_fd*		mypf_init(va_list *ap, char *field)
 		info->width = va_arg(*ap, int);
 		i++;
 	}
-	else if (info->flag == '*')
-		info->width = va_arg(*ap, int);
-
-	else if ((field[i] >= '0' && field[i] <= '9') || field[i] == '-')
+	else if (field[i] >= '1' && field[i] <= '9')
 		info->width = ft_atoi(field, &i);
 
 	// prec parsing => .이 있으면 prec비트를 킨다.
@@ -471,16 +252,12 @@ t_fd*		mypf_init(va_list *ap, char *field)
 		if (field[i] == '*')
 		{
 			info->prec = va_arg(*ap, int);
-			// prec이 존재하므로 0플래그를 꺼준다.
-			info->flag = (info->flag == '0' && info->prec >= 0) ? ' ' : info->flag;
 			i++;
 		}
 		else
-		{
 			info->prec = ft_atoi(field, &i);
-			info->flag = info->flag == '0' ? ' ' : info->flag;
-		}
 	}
+
 	// 음수처리
 	if (info->width < 0)
 	{
@@ -492,12 +269,19 @@ t_fd*		mypf_init(va_list *ap, char *field)
 		info->precbit = 0;
 		info->prec = 0;
 	}
-
 	// format parsing
 	if (is_format(field[i]))
 		info->format = field[i];
 
-	//printf("flag: %c, width: %d, prec: %d\n",info->flag,info->width,info->prec);
+	if (info->format == 'x')
+		info->digit = "0123456789abcdef";
+	else if (info->format == 'X')
+		info->digit = "0123456789ABCDEF";
+	else if (info->format == 'd' || info->format == 'i' || info->format == 'u')
+		info->digit = "0123456789";
+	if (info->digit != 0)
+		info->baselen = ft_strlen(info->digit);
+
 	return (info);
 }
 
@@ -511,12 +295,12 @@ int ft_printf(const char *one,...)
 
 	ret = 0;
 	i = 0;
-	fieldlen = 0;
 	va_start(ap, one);
 	while (one[i] != '\0')
 	{
 		if (one[i] == '%')
 		{
+			fieldlen = 0;
 			while (one[fieldlen + i + 1] != '\0' && !is_format(one[fieldlen + i + 1]))
 				fieldlen++;
 			info = mypf_init(&ap, ft_fielddup(one + i + 1, fieldlen));
@@ -532,33 +316,3 @@ int ft_printf(const char *one,...)
 	va_end(ap);
 	return (ret);
 }
-
-/*
-int main(){
-	char *s = "abc";
-	int a,b,d = 0;
-
-	//a = ft_printf("-->|%-3.*d|<--\n", 4, -135);
-	//b =    printf("-->|%-3.*d|<--\n", 4, -135);
-	a = ft_printf("-->|%-16.*s|<--\n", 1, s);	//-->|    |<--
-	b =    printf("-->|%-16.*s|<--\n", 1, s);	//-->|0   |<--
-	printf("a: %d, b: %d\n", a, b);
-
-	ft_printf("-->|%-7.6s|<--\n", s);	//-->|    |<--
-	   printf("-->|%-7.6s|<--\n\n", s);	//-->|0   |<--
-
-	d = 198;
-	// ft_printf("-->|%-4.4d|<--\n", d);		//-->|0198|<--
-	// ft_printf("-->|%--1.4d|<--\n", d);		//-->|0198|<--
-
-	//printf("a: %d, b: %d\n", a, b);
-
-	// a = ft_printf("나의결과: |%.4s|end\n", s);
-	// b = printf("실제결과: |%.4s|end\n", s);
-	// printf("a: %d, b: %d\n", a, b);
-
-	// a = ft_printf("나의결과: |%*.*s|end\n", 10, 9, s);
-	// b = printf("실제결과: |%*.*s|end\n", 10, 9, s);
-	// printf("a: %d, b: %d\n", a, b);
-}
-*/

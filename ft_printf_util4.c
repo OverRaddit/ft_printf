@@ -6,7 +6,7 @@
 /*   By: gshim <gshim@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/29 20:36:31 by gshim             #+#    #+#             */
-/*   Updated: 2021/06/29 20:37:21 by gshim            ###   ########.fr       */
+/*   Updated: 2021/07/03 20:05:09 by gshim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,4 +48,33 @@ char	*ft_fielddup(const char *src, int len)
 		len--;
 	}
 	return (str);
+}
+
+char	*ft_strdup(const char *src)
+{
+	int		i;
+	char	*str;
+
+	i = 0;
+	while (src[i] != '\0')
+		i++;
+	if (!(str = (char *)malloc(sizeof(char) * (i + 1))))
+		return (0);
+	i = 0;
+	while (src[i])
+	{
+		str[i] = src[i];
+		i++;
+	}
+	str[i] = '\0';
+	return (str);
+}
+
+void	*ft_calloc(size_t count, size_t size)
+{
+	void	*address;
+
+	if (!(address = malloc(size * count)))
+		return (0);
+	return (ft_memset(address, 0, size * count));
 }

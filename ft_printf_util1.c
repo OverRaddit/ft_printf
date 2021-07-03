@@ -6,7 +6,7 @@
 /*   By: gshim <gshim@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/29 20:30:41 by gshim             #+#    #+#             */
-/*   Updated: 2021/06/29 20:32:15 by gshim            ###   ########.fr       */
+/*   Updated: 2021/07/03 21:11:18 by gshim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ int		is_format(char c)
 
 	formats = "cspdiuxX%";
 	// 성능 개선을 위한 알파벳체크
-	if (!(c >= 'a' && c <= 'z') && (c >= 'A' && c <= 'Z'))
+	if (!((c >= 'a' && c <= 'z') || (c >= 'A' && c <= 'Z') || c == '%'))
 		return (0);
 	while (*formats)
 	{
@@ -34,7 +34,7 @@ int		is_flag(char c)
 	char	*flags;
 	// .은 다른부분에서 파싱 가능하니 한번 빼봅시다.
 
-	flags = "-0*";
+	flags = " -0";
 	while (*flags)
 	{
 		if (c == *flags)

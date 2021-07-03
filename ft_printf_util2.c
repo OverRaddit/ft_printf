@@ -6,7 +6,7 @@
 /*   By: gshim <gshim@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/29 20:32:55 by gshim             #+#    #+#             */
-/*   Updated: 2021/06/29 20:33:31 by gshim            ###   ########.fr       */
+/*   Updated: 2021/07/03 21:43:55 by gshim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,12 +46,12 @@ void	ft_putchar(char c)
 	write(1, &c, 1);
 }
 
-void	ft_putstr(char *s)
-{
-	if (!s)
-		return ;
-	write(1, s, ft_strlen(s));
-}
+// void	ft_putstr(char *s)
+// {
+// 	if (!s)
+// 		return ;
+// 	write(1, s, ft_strlen(s));
+// }
 
 int		ft_atoi(const char *str, int *i)
 {
