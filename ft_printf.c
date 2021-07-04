@@ -6,15 +6,16 @@
 /*   By: gshim <gshim@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/03 19:45:16 by gshim             #+#    #+#             */
-/*   Updated: 2021/07/04 14:56:55 by gshim            ###   ########.fr       */
+/*   Updated: 2021/07/04 18:10:37 by gshim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-void	mypf_handle(va_list *ap, t_fd *info)
+int		mypf_handle(va_list *ap, t_fd *info)
 {
 	long long	num;
+	int			ret;
 
 	if (info->format == 'd' || info->format == 'i')
 	{
@@ -24,18 +25,19 @@ void	mypf_handle(va_list *ap, t_fd *info)
 			info->sign = 0;
 			num *= -1;
 		}
-		mypf_printd(num, info);
+		ret = print_number(num, info);
 	}
 	else if (info->format == 'c')
-		mypf_printc(va_arg(*ap, int), info);
+		ret = print_char(va_arg(*ap, int), info);
 	else if (info->format == '%')
-		mypf_printc('%', info);
+		ret = print_char('%', info);
 	else if (info->format == 's')
-		mypf_prints(va_arg(*ap, char *), info);
+		ret = print_str(va_arg(*ap, char *), info);
 	else if (info->format == 'p')
-		mypf_printp(va_arg(*ap, unsigned long long), info);
+		ret = print_address(va_arg(*ap, unsigned long long), info);
 	else if (info->format == 'u' || info->format == 'x' || info->format == 'X')
-		mypf_printd(va_arg(*ap, unsigned int), info);
+		ret = print_number(va_arg(*ap, unsigned int), info);
+	return (ret);
 }
 
 void	fwp_parsing(char *field, int *i, t_fd *info, va_list *ap)
@@ -66,7 +68,7 @@ void	fwp_parsing(char *field, int *i, t_fd *info, va_list *ap)
 	}
 }
 
-void	getDigit(t_fd *info)
+void	get_Field_digit(t_fd *info)
 {
 	if (info->format == 'x')
 		info->digit = "0123456789abcdef";
@@ -79,7 +81,7 @@ void	getDigit(t_fd *info)
 }
 
 //%[플래그][폭][.정밀도][길이] 서식지정자
-t_fd*		mypf_init(va_list *ap, char *field)
+t_fd	*get_Field(va_list *ap, char *field)
 {
 	t_fd	*info;
 	int		i;
@@ -100,38 +102,41 @@ t_fd*		mypf_init(va_list *ap, char *field)
 		info->precbit = 0;
 		info->prec = 0;
 	}
-	getDigit(info);
+	get_Field_digit(info);
 	return (info);
 }
 
-int ft_printf(const char *one,...)
+int ft_printf(const char *str,...)
 {
 	va_list	ap;
 	t_fd	*info;
 	int		i;
 	int		fieldlen;
-	int		ret;
+	int		totalbyte;
 
-	ret = 0;
+	totalbyte = 0;
 	i = 0;
-	va_start(ap, one);
-	while (one[i] != '\0')
+	va_start(ap, str);
+	while (str[i] != '\0')
 	{
-		if (one[i] == '%')
+		// 하나의 필드를 처리한다.
+		if (str[i] == '%')
 		{
+			// 1. 하나의 필드를 뽑아낸다.
 			fieldlen = 0;
-			while (one[fieldlen + i + 1] != '\0' && !is_format(one[fieldlen + i + 1]))
+			while (str[fieldlen + i + 1] != '\0' && !is_format(str[fieldlen + i + 1]))
 				fieldlen++;
-			info = mypf_init(&ap, ft_fielddup(one + i + 1, fieldlen));
+			info = get_Field(&ap, ft_fielddup(str + i + 1, fieldlen));
 			i += fieldlen + 2;
-			mypf_handle(&ap, info);
-			ret += info->ret;
+			if (mypf_handle(&ap, info) < 0)
+				return (-1);
+			totalbyte += info->ret;
 			free(info);
 			continue;
 		}
-		write(1, &one[i++], 1);
-		ret += 1;
+		write(1, &str[i++], 1);
+		totalbyte += 1;
 	}
 	va_end(ap);
-	return (ret);
+	return (totalbyte);
 }
