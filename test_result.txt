@@ -1,0 +1,337 @@
+
+------------------------------
+|        string.c            |
+|                            |
+------------------------------
+
+make: `libftprintf.a' is up to date.
+
+[1;32m[ OK ] - All GOOD
+[0m
+Please select: 1, 2, 3, or 4
+
+
+[ next (1) ]  |  [ show diff (2) ]  |  [ show printf results ] (3)  |  [ show ft_printf results ] (4)  |
+
+rm -f ft_printf_util1.o ft_printf_util2.o ft_printf_util3.o ft_printf_util4.o ft_printf.o libftprintf.a
+------------------------------
+|        number.c            |
+|                            |
+------------------------------
+
+gcc -Wall -Wextra -Werror -c ft_printf_util1.c -o ft_printf_util1.o
+gcc -Wall -Wextra -Werror -c ft_printf_util2.c -o ft_printf_util2.o
+gcc -Wall -Wextra -Werror -c ft_printf_util3.c -o ft_printf_util3.o
+gcc -Wall -Wextra -Werror -c ft_printf_util4.c -o ft_printf_util4.o
+gcc -Wall -Wextra -Werror -c ft_printf.c -o ft_printf.o
+ar rc libftprintf.a ft_printf_util1.o ft_printf_util2.o ft_printf_util3.o ft_printf_util4.o ft_printf.o
+
+[1;32m[ OK ] - All GOOD
+[0m
+Please select: 1, 2, 3, or 4
+
+
+[ next (1) ]  |  [ show diff (2) ]  |  [ show printf results ] (3)  |  [ show ft_printf results ] (4)  |
+
+rm -f ft_printf_util1.o ft_printf_util2.o ft_printf_util3.o ft_printf_util4.o ft_printf.o libftprintf.a
+------------------------------
+|        char.c              |
+|                            |
+------------------------------
+
+gcc -Wall -Wextra -Werror -c ft_printf_util1.c -o ft_printf_util1.o
+gcc -Wall -Wextra -Werror -c ft_printf_util2.c -o ft_printf_util2.o
+gcc -Wall -Wextra -Werror -c ft_printf_util3.c -o ft_printf_util3.o
+gcc -Wall -Wextra -Werror -c ft_printf_util4.c -o ft_printf_util4.o
+gcc -Wall -Wextra -Werror -c ft_printf.c -o ft_printf.o
+ar rc libftprintf.a ft_printf_util1.o ft_printf_util2.o ft_printf_util3.o ft_printf_util4.o ft_printf.o
+
+[1;32m[ OK ] - All GOOD
+[0m
+Please select: 1, 2, 3, or 4
+
+
+[ next (1) ]  |  [ show diff (2) ]  |  [ show printf results ] (3)  |  [ show ft_printf results ] (4)  |
+
+rm -f ft_printf_util1.o ft_printf_util2.o ft_printf_util3.o ft_printf_util4.o ft_printf.o libftprintf.a
+------------------------------
+|        unsigned_int.c      |
+|                            |
+------------------------------
+
+gcc -Wall -Wextra -Werror -c ft_printf_util1.c -o ft_printf_util1.o
+gcc -Wall -Wextra -Werror -c ft_printf_util2.c -o ft_printf_util2.o
+gcc -Wall -Wextra -Werror -c ft_printf_util3.c -o ft_printf_util3.o
+gcc -Wall -Wextra -Werror -c ft_printf_util4.c -o ft_printf_util4.o
+gcc -Wall -Wextra -Werror -c ft_printf.c -o ft_printf.o
+ar rc libftprintf.a ft_printf_util1.o ft_printf_util2.o ft_printf_util3.o ft_printf_util4.o ft_printf.o
+
+[1;32m[ OK ] - All GOOD
+[0m
+Please select: 1, 2, 3, or 4
+
+
+[ next (1) ]  |  [ show diff (2) ]  |  [ show printf results ] (3)  |  [ show ft_printf results ] (4)  |
+
+rm -f ft_printf_util1.o ft_printf_util2.o ft_printf_util3.o ft_printf_util4.o ft_printf.o libftprintf.a
+------------------------------
+|        hexa.c              |
+|                            |
+------------------------------
+
+gcc -Wall -Wextra -Werror -c ft_printf_util1.c -o ft_printf_util1.o
+gcc -Wall -Wextra -Werror -c ft_printf_util2.c -o ft_printf_util2.o
+gcc -Wall -Wextra -Werror -c ft_printf_util3.c -o ft_printf_util3.o
+gcc -Wall -Wextra -Werror -c ft_printf_util4.c -o ft_printf_util4.o
+gcc -Wall -Wextra -Werror -c ft_printf.c -o ft_printf.o
+ar rc libftprintf.a ft_printf_util1.o ft_printf_util2.o ft_printf_util3.o ft_printf_util4.o ft_printf.o
+
+[1;32m[ OK ] - All GOOD
+[0m
+Please select: 1, 2, 3, or 4
+
+
+[ next (1) ]  |  [ show diff (2) ]  |  [ show printf results ] (3)  |  [ show ft_printf results ] (4)  |
+
+rm -f ft_printf_util1.o ft_printf_util2.o ft_printf_util3.o ft_printf_util4.o ft_printf.o libftprintf.a
+------------------------------
+|        percent.c           |
+|                            |
+------------------------------
+
+gcc -Wall -Wextra -Werror -c ft_printf_util1.c -o ft_printf_util1.o
+gcc -Wall -Wextra -Werror -c ft_printf_util2.c -o ft_printf_util2.o
+gcc -Wall -Wextra -Werror -c ft_printf_util3.c -o ft_printf_util3.o
+gcc -Wall -Wextra -Werror -c ft_printf_util4.c -o ft_printf_util4.o
+gcc -Wall -Wextra -Werror -c ft_printf.c -o ft_printf.o
+ar rc libftprintf.a ft_printf_util1.o ft_printf_util2.o ft_printf_util3.o ft_printf_util4.o ft_printf.o
+
+[1;32m[ OK ] - All GOOD
+[0m
+Please select: 1, 2, 3, or 4
+
+
+[ next (1) ]  |  [ show diff (2) ]  |  [ show printf results ] (3)  |  [ show ft_printf results ] (4)  |
+
+rm -f ft_printf_util1.o ft_printf_util2.o ft_printf_util3.o ft_printf_util4.o ft_printf.o libftprintf.a
+------------------------------
+|        pointer.c           |
+|                            |
+------------------------------
+
+gcc -Wall -Wextra -Werror -c ft_printf_util1.c -o ft_printf_util1.o
+gcc -Wall -Wextra -Werror -c ft_printf_util2.c -o ft_printf_util2.o
+gcc -Wall -Wextra -Werror -c ft_printf_util3.c -o ft_printf_util3.o
+gcc -Wall -Wextra -Werror -c ft_printf_util4.c -o ft_printf_util4.o
+gcc -Wall -Wextra -Werror -c ft_printf.c -o ft_printf.o
+ar rc libftprintf.a ft_printf_util1.o ft_printf_util2.o ft_printf_util3.o ft_printf_util4.o ft_printf.o
+1 [0x16b48b6a0]15					      |	1 [0x16f2176a0]15
+1.1 [0x16b48b6a0]17					      |	1.1 [0x16f2176a0]17
+3 ! [0x16b48b6a0]17					      |	3 ! [0x16f2176a0]17
+3.4 ![0x16b48b6a0]18					      |	3.4 ![0x16f2176a0]18
+5 [0x16b48b6a0]15					      |	5 [0x16f2176a0]15
+10 [0x16b48b6a0                                               |	10 [0x16f2176a0                                              
+10 [0x16b48b6a0]16					      |	10 [0x16f2176a0]16
+10 [0x16b48b6a0]16					      |	10 [0x16f2176a0]16
+10 [0x16b48b6a0]16					      |	10 [0x16f2176a0]16
+10 [0x16b48b6a0]16					      |	10 [0x16f2176a0]16
+10 [                                                          |	10 [                                                         
+10 [                                                          |	10 [                                                         
+1 [0x16b48b6a4]15					      |	1 [0x16f2176a4]15
+1.1 [0x16b48b6a4]17					      |	1.1 [0x16f2176a4]17
+3 ! [0x16b48b6a4]17					      |	3 ! [0x16f2176a4]17
+3.4 ![0x16b48b6a4]18					      |	3.4 ![0x16f2176a4]18
+5 [0x16b48b6a4]15					      |	5 [0x16f2176a4]15
+10 [0x16b48b6a4                                               |	10 [0x16f2176a4                                              
+10 [0x16b48b6a4]16					      |	10 [0x16f2176a4]16
+10 [0x16b48b6a4]16					      |	10 [0x16f2176a4]16
+10 [0x16b48b6a4]16					      |	10 [0x16f2176a4]16
+10 [0x16b48b6a4]16					      |	10 [0x16f2176a4]16
+10 [                                                          |	10 [                                                         
+10 [                                                          |	10 [                                                         
+1 [0x16b48b6a8]15					      |	1 [0x16f2176a8]15
+1.1 [0x16b48b6a8]17					      |	1.1 [0x16f2176a8]17
+3 ! [0x16b48b6a8]17					      |	3 ! [0x16f2176a8]17
+3.4 ![0x16b48b6a8]18					      |	3.4 ![0x16f2176a8]18
+5 [0x16b48b6a8]15					      |	5 [0x16f2176a8]15
+10 [0x16b48b6a8                                               |	10 [0x16f2176a8                                              
+10 [0x16b48b6a8]16					      |	10 [0x16f2176a8]16
+10 [0x16b48b6a8]16					      |	10 [0x16f2176a8]16
+10 [0x16b48b6a8]16					      |	10 [0x16f2176a8]16
+10 [0x16b48b6a8]16					      |	10 [0x16f2176a8]16
+10 [                                                          |	10 [                                                         
+10 [                                                          |	10 [                                                         
+1 [0x16b48b6ac]15					      |	1 [0x16f2176ac]15
+1.1 [0x16b48b6ac]17					      |	1.1 [0x16f2176ac]17
+3 ! [0x16b48b6ac]17					      |	3 ! [0x16f2176ac]17
+3.4 ![0x16b48b6ac]18					      |	3.4 ![0x16f2176ac]18
+5 [0x16b48b6ac]15					      |	5 [0x16f2176ac]15
+10 [0x16b48b6ac                                               |	10 [0x16f2176ac                                              
+10 [0x16b48b6ac]16					      |	10 [0x16f2176ac]16
+10 [0x16b48b6ac]16					      |	10 [0x16f2176ac]16
+10 [0x16b48b6ac]16					      |	10 [0x16f2176ac]16
+10 [0x16b48b6ac]16					      |	10 [0x16f2176ac]16
+10 [                                                          |	10 [                                                         
+10 [                                                          |	10 [                                                         
+1 [0x16b48b6b0]15					      |	1 [0x16f2176b0]15
+1.1 [0x16b48b6b0]17					      |	1.1 [0x16f2176b0]17
+3 ! [0x16b48b6b0]17					      |	3 ! [0x16f2176b0]17
+3.4 ![0x16b48b6b0]18					      |	3.4 ![0x16f2176b0]18
+5 [0x16b48b6b0]15					      |	5 [0x16f2176b0]15
+10 [0x16b48b6b0                                               |	10 [0x16f2176b0                                              
+10 [0x16b48b6b0]16					      |	10 [0x16f2176b0]16
+10 [0x16b48b6b0]16					      |	10 [0x16f2176b0]16
+10 [0x16b48b6b0]16					      |	10 [0x16f2176b0]16
+10 [0x16b48b6b0]16					      |	10 [0x16f2176b0]16
+10 [                                                          |	10 [                                                         
+10 [                                                          |	10 [                                                         
+ 							      |
+ 							      |
+ 							      |
+ 							      |
+ PRINTF							      |	 FT_PRINTF
+------------------------------------------------------------------------------------------------------------------------------
+[1;32m
+[ KO ] But it's ok, it is the pointer test, you have to compare the results by yourself
+[0m
+Please select: 1, 2, 3, or 4
+
+
+[ next (1) ]  |  [ show diff (2) ]  |  [ show printf results ] (3)  |  [ show ft_printf results ] (4)  |
+
+rm -f ft_printf_util1.o ft_printf_util2.o ft_printf_util3.o ft_printf_util4.o ft_printf.o libftprintf.a
+######### 42TESTERS-PRINTF ##########
+#####42TESTS-PRINTF#####
+#########PFT##########
+Test 647 (moul_star_2) : FAILED.$
+    First line of code: {return test("%% *.5i 42 == |% *.5i|$
+", 4, 42);}$
+      expected output : "% *.5i 42 == | 00042|$
+"$
+      your output     : "% *.5i 42 == |00042|$
+"$
+      expected (nonprintable as hex) : "% *.5i 42 == | 00042|\x0a"$
+      actual   (nonprintable as hex) : "% *.5i 42 == |00042|\x0a"$
+$
+Test 4192 (notintsubject_o_neg_prec_star_01) : FAILED.$
+    First line of code: {return test("%.*o", -3, 12345);}$
+      expected output : "30071"$
+      your output     : "000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000"$
+      expected (nonprintable as hex) : "30071"$
+      actual   (nonprintable as hex) : "000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000"$
+$
+Test 4193 (notintsubject_o_neg_prec_star_02) : FAILED.$
+    First line of code: {return test("%.*o", -1, 12345);}$
+      expected output : "30071"$
+      your output     : "000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000"$
+      expected (nonprintable as hex) : "30071"$
+      actual   (nonprintable as hex) : "000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000"$
+$
+Test 4194 (notintsubject_o_neg_prec_star_03) : FAILED.$
+    First line of code: {return test("%.*o", -1, 0);}$
+      expected output : "0"$
+      your output     : "6b3372d0"$
+      expected (nonprintable as hex) : "0"$
+      actual   (nonprintable as hex) : "6b3372d0"$
+$
+#########PFT_2019##########
+WARNING: The return values reported here may be bugged on some systems.$
+          See https://github.com/gavinfielder/pft/issues/11$
+          Run in non-fork mode (-X) to ensure accurate return value$
+          reporting, set IGNORE_RETURN_VALUE=1 in options-config.ini,$
+          or run test_pipes.sh to see if your system has this bug.$
+          This bug does not affect the pass/fail result of a test, nor$
+          the function output--only the reported return value.$
+$
+$
+Test 130 (s_undefbehav_0_width_9) : FAILED.$
+    First line of code: {return test("%09s", s_hidden);}$
+      expected return value : 9$
+      your return value     : 9$
+      expected output : "000hi low"$
+      your output     : "   hi low"$
+      expected (nonprintable as hex) : "000hi low"$
+      actual   (nonprintable as hex) : "   hi low"$
+$
+Test 432 (p_ftfc_literal_9w_prec2_undefbehav) : FAILED.$
+    First line of code: {return test("%9.2p$
+", 1234);}$
+      expected return value : 11$
+      your return value     : 11$
+      expected output : "    0x4d2$
+"$
+      your output     : "       0x$
+"$
+      expected (nonprintable as hex) : "    0x4d2\x0a"$
+      actual   (nonprintable as hex) : "       0x\x0a"$
+$
+Test 433 (p_ftfc_literal_2w_prec9_undefbehav) : FAILED.$
+    First line of code: {return test("%2.9p$
+", 1234);}$
+      expected return value : 13$
+      your return value     : 6$
+      expected output : "0x0000004d2$
+"$
+      your output     : "0x4d2$
+"$
+      expected (nonprintable as hex) : "0x0000004d2\x0a"$
+      actual   (nonprintable as hex) : "0x4d2\x0a"$
+$
+Test 434 (p_ftfc_zero_prec5_undefbehav) : FAILED.$
+    First line of code: {return test("%.5p", 0);}$
+      expected return value : 7$
+      your return value     : 3$
+      expected output : "0x00000"$
+      your output     : "0x0"$
+      expected (nonprintable as hex) : "0x00000"$
+      actual   (nonprintable as hex) : "0x0"$
+$
+Test 615 (nocrash_mandatory_f_size_hh) : FAILED.$
+    (nocrash test: automatically passes provided no unexpected failure)$
+    First line of code: {return test("%hhf", 42.5);}$
+    SEGFAULT$
+$
+Test 616 (nocrash_mandatory_f_size_h) : FAILED.$
+    (nocrash test: automatically passes provided no unexpected failure)$
+    First line of code: {return test("%hf", 42.5);}$
+    SEGFAULT$
+$
+Test 617 (nocrash_mandatory_f_size_ll) : FAILED.$
+    (nocrash test: automatically passes provided no unexpected failure)$
+    First line of code: {return test("%llf", 42.5);}$
+    SEGFAULT$
+$
+Test 618 (nocrash_mandatory_f_size_lll) : FAILED.$
+    (nocrash test: automatically passes provided no unexpected failure)$
+    First line of code: {return test("%lllf", 42.5);}$
+    SEGFAULT$
+$
+Test 619 (nocrash_mandatory_f_size_llll) : FAILED.$
+    (nocrash test: automatically passes provided no unexpected failure)$
+    First line of code: {return test("%llllf", 42.5);}$
+    SEGFAULT$
+$
+Test 620 (nocrash_mandatory_f_size_LL) : FAILED.$
+    (nocrash test: automatically passes provided no unexpected failure)$
+    First line of code: {return test("%LLf", 42.5);}$
+    SEGFAULT$
+$
+Test 621 (nocrash_mandatory_f_size_Ll) : FAILED.$
+    (nocrash test: automatically passes provided no unexpected failure)$
+    First line of code: {return test("%Llf", 42.5);}$
+    SEGFAULT$
+$
+Test 622 (nocrash_mandatory_f_size_lL) : FAILED.$
+    (nocrash test: automatically passes provided no unexpected failure)$
+    First line of code: {return test("%lLf", 42.5);}$
+    SEGFAULT$
+$
+Test 623 (nocrash_mandatory_f_lj_nowidth) : FAILED.$
+    (nocrash test: automatically passes provided no unexpected failure)$
+    First line of code: {return test("%-f", 42.5);}$
+    SEGFAULT$
+$
+######### printf_lover_v2 ##########
+######### printf-tester ##########
+######### ft_printf_test ##########
+######### Test-42 ##########
