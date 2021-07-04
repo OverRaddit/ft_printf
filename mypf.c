@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mypf.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gshim <gshim@student.42seoul.kr>           +#+  +:+       +#+        */
+/*   By: gshim <gshim@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/04 14:14:54 by gshim             #+#    #+#             */
-/*   Updated: 2021/07/04 18:08:38 by gshim            ###   ########.fr       */
+/*   Updated: 2021/07/04 20:39:36 by gshim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,11 +30,12 @@ char	*printd_prec(t_fd *info, int bufsize, char b, unsigned long long n)
 	return (temp);
 }
 
-void	printd_width(t_fd *info,int bufsize, char blank, char *temp)
+int	printd_width(t_fd *info,int bufsize, char blank, char *temp)
 {
 	char	*ret;
 
-	ret = (char*)ft_calloc(info->width, sizeof(char));
+	if (!(ret = (char*)ft_calloc(info->width, sizeof(char))))
+		return (-1);
 	if (blank == '0' && !info->sign)
 		ret[0] = '-';
 	if (info->flag != '-')
@@ -46,10 +47,10 @@ void	printd_width(t_fd *info,int bufsize, char blank, char *temp)
 	info->ret = info->width;
 	free(ret);
 	free(temp);
-	return ;
+	return (0);
 }
 
-void	print_number(unsigned long long n, t_fd *info)
+int	print_number(unsigned long long n, t_fd *info)
 {
 	char	*temp;
 	int		bufsize;
@@ -61,7 +62,8 @@ void	print_number(unsigned long long n, t_fd *info)
 	blank = get_Field_blank(info);
 	len = (n == 0) ? 1 : recursive(n, info->baselen);
 	bufsize = get_Field_bufsize(info, len);
-	temp = (char*)ft_calloc(bufsize + 1, sizeof(char));
+	if (!(temp = (char*)ft_calloc(bufsize + 1, sizeof(char))))
+		return (-1);
 
 	// prec처리
 	if (blank == ' ' && !info->sign)
@@ -83,6 +85,7 @@ void	print_number(unsigned long long n, t_fd *info)
 		write(1, "-", 1);
 	write(1, temp, ft_strlen(temp));
 	free(temp);
+	return (0);
 }
 
 int	print_char(char c, t_fd *info)

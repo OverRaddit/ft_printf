@@ -3,18 +3,18 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printf_util1.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gshim <gshim@student.42seoul.kr>           +#+  +:+       +#+        */
+/*   By: gshim <gshim@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/29 20:30:41 by gshim             #+#    #+#             */
-/*   Updated: 2021/07/04 01:34:17 by gshim            ###   ########.fr       */
+/*   Updated: 2021/07/04 20:45:40 by gshim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int		is_format(char c)
+int	is_format(char c)
 {
-	char *formats;
+	char	*formats;
 
 	formats = "cspdiuxX%";
 	if (!((c >= 'a' && c <= 'z') || (c >= 'A' && c <= 'Z') || c == '%'))
@@ -28,7 +28,7 @@ int		is_format(char c)
 	return (0);
 }
 
-int		is_flag(char c)
+int	is_flag(char c)
 {
 	char	*flags;
 
@@ -44,7 +44,7 @@ int		is_flag(char c)
 
 size_t	ft_strlen(const char *str)
 {
-	size_t i;
+	size_t	i;
 
 	i = 0;
 	while (str[i] != '\0')
@@ -52,12 +52,18 @@ size_t	ft_strlen(const char *str)
 	return (i);
 }
 
-int		max(int x, int y)
+int	max(int x, int y)
 {
-	return ((x > y) ? x : y);
+	if (x > y)
+		return (x);
+	else
+		return (y);
 }
 
-int		min(int x, int y)
+int	min(int x, int y)
 {
-	return ((x < y) ? x : y);
+	if (x < y)
+		return (x);
+	else
+		return (y);
 }

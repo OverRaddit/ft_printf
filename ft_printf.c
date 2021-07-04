@@ -3,20 +3,21 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printf.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gshim <gshim@student.42seoul.kr>           +#+  +:+       +#+        */
+/*   By: gshim <gshim@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/03 19:45:16 by gshim             #+#    #+#             */
-/*   Updated: 2021/07/04 18:10:37 by gshim            ###   ########.fr       */
+/*   Updated: 2021/07/04 21:42:33 by gshim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int		mypf_handle(va_list *ap, t_fd *info)
+int	mypf_handle(va_list *ap, t_fd *info)
 {
 	long long	num;
 	int			ret;
 
+	ret = 0;
 	if (info->format == 'd' || info->format == 'i')
 	{
 		num = va_arg(*ap, int);
@@ -40,11 +41,12 @@ int		mypf_handle(va_list *ap, t_fd *info)
 	return (ret);
 }
 
-void	fwp_parsing(char *field, int *i, t_fd *info, va_list *ap)
+void	get_Field_fwp(const char *field, int *i, t_fd *info, va_list *ap)
 {
 	while (is_flag(field[(*i)]))
 	{
-		info->flag = (info->flag == '-') ? '-' : field[(*i)];
+		if (info->flag != '-')
+			info->flag = field[(*i)];
 		(*i)++;
 	}
 	if (field[(*i)] == '*')
@@ -81,15 +83,15 @@ void	get_Field_digit(t_fd *info)
 }
 
 //%[플래그][폭][.정밀도][길이] 서식지정자
-t_fd	*get_Field(va_list *ap, char *field)
+t_fd	*get_Field(va_list *ap, const char *field)
 {
 	t_fd	*info;
 	int		i;
 
-	info = (t_fd*)ft_calloc(1, sizeof(t_fd));
+	info = (t_fd *)ft_calloc(1, sizeof(t_fd));
 	info->sign = 1;
 	i = 0;
-	fwp_parsing(field, &i, info, ap);
+	get_Field_fwp(field, &i, info, ap);
 	if (is_format(field[i]))
 		info->format = field[i];
 	if (info->width < 0)
@@ -106,12 +108,33 @@ t_fd	*get_Field(va_list *ap, char *field)
 	return (info);
 }
 
-int ft_printf(const char *str,...)
+// int	handle_Field(va_list ap, const char *str, int i)
+// {
+// 	fieldlen = 0;
+// 	info = get_Field(&ap, ft_fielddup(str + i + 1, &fieldlen));
+// 	i += fieldlen + 2;
+// 	if (mypf_handle(&ap, info) == -1)
+// 		return (-1);
+// 	totalbyte += info->ret;
+// 	free(info);
+// 	continue ;
+// }
+
+int	get_Fieldlen(const char *str)
+{
+	int len;
+
+	len = 0;
+	while (str[len] != '\0' && !is_format(str[len]))
+		len++;
+	return (len);
+}
+
+int	ft_printf(const char *str, ...)
 {
 	va_list	ap;
 	t_fd	*info;
 	int		i;
-	int		fieldlen;
 	int		totalbyte;
 
 	totalbyte = 0;
@@ -119,20 +142,17 @@ int ft_printf(const char *str,...)
 	va_start(ap, str);
 	while (str[i] != '\0')
 	{
-		// 하나의 필드를 처리한다.
 		if (str[i] == '%')
 		{
-			// 1. 하나의 필드를 뽑아낸다.
-			fieldlen = 0;
-			while (str[fieldlen + i + 1] != '\0' && !is_format(str[fieldlen + i + 1]))
-				fieldlen++;
-			info = get_Field(&ap, ft_fielddup(str + i + 1, fieldlen));
-			i += fieldlen + 2;
-			if (mypf_handle(&ap, info) < 0)
+			info = get_Field(&ap, str + i + 1);
+			//printf("@%s@\n",str + i);
+			//printf("len : %d, i : %d\n",get_Fieldlen(str + i + 1) + 2, i);
+			i += get_Fieldlen(str + i + 1) + 2;
+			if (mypf_handle(&ap, info) == -1)
 				return (-1);
 			totalbyte += info->ret;
 			free(info);
-			continue;
+			continue ;
 		}
 		write(1, &str[i++], 1);
 		totalbyte += 1;

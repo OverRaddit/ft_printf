@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printf.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gshim <gshim@student.42seoul.kr>           +#+  +:+       +#+        */
+/*   By: gshim <gshim@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/29 20:15:39 by gshim             #+#    #+#             */
-/*   Updated: 2021/07/04 18:08:54 by gshim            ###   ########.fr       */
+/*   Updated: 2021/07/04 21:16:58 by gshim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,20 +42,20 @@ size_t	ft_strlen(const char *str);
 int		ft_atoi(const char *str, int *i);
 void	*ft_memset(void *ptr, int value, size_t num);
 void	*ft_calloc(size_t count, size_t size);
+char	*ft_strcat(char *dest, char *src);
+char	*ft_strncat(char *dest, char *src, unsigned int nb);
 
 //3
 unsigned long long	recursive(unsigned long long n, int baselen);
 char	*ft_uitoa(unsigned long long number, char *digit, int baselen);
-char	*ft_strcat(char *dest, char *src);
-char	*ft_strncat(char *dest, char *src, unsigned int nb);
-char	*ft_fielddup(const char *src, int len);
+char	*ft_fielddup(const char *src, int *len);
 char	*ft_xtoa(unsigned long long number);
 
 //printf
-void	mypf_handle(va_list *ap, t_fd *info);
-void	fwp_parsing(char *field, int *i, t_fd *info, va_list *ap);
+int		mypf_handle(va_list *ap, t_fd *info);
+void	get_Field_fwp(const char *field, int *i, t_fd *info, va_list *ap);
 void	get_Field_digit(t_fd *info);
-t_fd*	get_Field(va_list *ap, char *field);
+t_fd*	get_Field(va_list *ap, const char *field);
 int		ft_printf(const char *one,...);
 
 //mypf
