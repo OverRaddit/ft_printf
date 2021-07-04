@@ -6,7 +6,7 @@
 /*   By: gshim <gshim@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/03 19:45:16 by gshim             #+#    #+#             */
-/*   Updated: 2021/07/04 18:10:37 by gshim            ###   ########.fr       */
+/*   Updated: 2021/07/04 23:58:50 by gshim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@ int		mypf_handle(va_list *ap, t_fd *info)
 	long long	num;
 	int			ret;
 
+	ret = 0;
 	if (info->format == 'd' || info->format == 'i')
 	{
 		num = va_arg(*ap, int);
@@ -106,6 +107,19 @@ t_fd	*get_Field(va_list *ap, char *field)
 	return (info);
 }
 
+// int	handle_field(va_list ap, const char *str, int i, int totalbyte)
+// {
+// 	fieldlen = 0;
+// 	while (str[fieldlen + i + 1] != '\0' && !is_format(str[fieldlen + i + 1]))
+// 		fieldlen++;
+// 	info = get_Field(&ap, ft_fielddup(str + i + 1, fieldlen));
+// 	i += fieldlen + 2;
+// 	if (mypf_handle(&ap, info) < 0)
+// 		return (-1);
+// 	totalbyte += info->ret;
+// 	free(info);
+// }
+
 int ft_printf(const char *str,...)
 {
 	va_list	ap;
@@ -119,12 +133,10 @@ int ft_printf(const char *str,...)
 	va_start(ap, str);
 	while (str[i] != '\0')
 	{
-		// 하나의 필드를 처리한다.
 		if (str[i] == '%')
 		{
-			// 1. 하나의 필드를 뽑아낸다.
 			fieldlen = 0;
-			while (str[fieldlen + i + 1] != '\0' && !is_format(str[fieldlen + i + 1]))
+			while (str[i + 1] != '\0' && !is_format(str[i + 1]))
 				fieldlen++;
 			info = get_Field(&ap, ft_fielddup(str + i + 1, fieldlen));
 			i += fieldlen + 2;

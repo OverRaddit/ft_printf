@@ -6,7 +6,7 @@
 /*   By: gshim <gshim@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/29 20:15:39 by gshim             #+#    #+#             */
-/*   Updated: 2021/07/04 18:08:54 by gshim            ###   ########.fr       */
+/*   Updated: 2021/07/04 23:58:12 by gshim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ char	*ft_fielddup(const char *src, int len);
 char	*ft_xtoa(unsigned long long number);
 
 //printf
-void	mypf_handle(va_list *ap, t_fd *info);
+int		mypf_handle(va_list *ap, t_fd *info);
 void	fwp_parsing(char *field, int *i, t_fd *info, va_list *ap);
 void	get_Field_digit(t_fd *info);
 t_fd*	get_Field(va_list *ap, char *field);
