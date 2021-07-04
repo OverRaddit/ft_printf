@@ -3,34 +3,35 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printf_util2.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gshim <gshim@student.42seoul.kr>           +#+  +:+       +#+        */
+/*   By: gshim <gshim@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/29 20:32:55 by gshim             #+#    #+#             */
-/*   Updated: 2021/07/04 14:59:18 by gshim            ###   ########.fr       */
+/*   Updated: 2021/07/04 21:02:08 by gshim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int		ft_atoi(const char *str, int *i)
+// atoi 살짝수정함.
+int	ft_atoi(const char *str, int *i)
 {
 	char		*s;
 	long long	ret;
 	int			sign;
 
 	s = (char *)str;
+	sign = 1;
 	ret = 0;
 	while ((9 <= s[*i] && s[*i] <= 13) || s[*i] == 32)
 		(*i)++;
 	if (s[*i] == '-' || s[*i] == '+')
-		sign = (s[(*i)++] == '-') ? -1 : 1;
-	else
-		sign = 1;
+		if (s[(*i)++] == '-')
+			sign = -1;
 	while (s[*i] != '\0' && (s[*i] >= '0' && s[*i] <= '9'))
 	{
 		ret = (ret * 10) + (s[*i] - '0');
 		if (!(INT_MIN <= ret * sign && ret * sign <= INT_MAX))
-			return ((sign < 0) ? 0 : -1);
+			return (-1);
 		(*i)++;
 	}
 	ret *= sign;
@@ -56,7 +57,44 @@ void	*ft_calloc(size_t count, size_t size)
 {
 	void	*address;
 
-	if (!(address = malloc(size * count)))
+	address = malloc(size * count);
+	if (address == 0)
 		return (0);
 	return (ft_memset(address, 0, size * count));
+}
+
+char	*ft_strcat(char *dest, char *src)
+{
+	size_t	destlen;
+	size_t	i;
+
+	destlen = ft_strlen(dest);
+	i = 0;
+	while (src[i] != '\0')
+	{
+		dest[destlen + i] = src[i];
+		i++;
+	}
+	dest[destlen + i] = '\0';
+	return (dest);
+}
+
+char	*ft_strncat(char *dest, char *src, unsigned int nb)
+{
+	unsigned int	destlen;
+	unsigned int	i;
+
+	destlen = ft_strlen(dest);
+	i = 0;
+	while (src[i] != '\0')
+	{
+		if (i == nb)
+		{
+			break ;
+		}
+		dest[destlen + i] = src[i];
+		i++;
+	}
+	dest[destlen + i] = '\0';
+	return (dest);
 }

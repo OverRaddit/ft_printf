@@ -6,7 +6,7 @@
 /*   By: gshim <gshim@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/04 14:14:54 by gshim             #+#    #+#             */
-/*   Updated: 2021/07/05 00:00:45 by gshim            ###   ########.fr       */
+/*   Updated: 2021/07/05 00:03:20 by gshim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,8 +34,7 @@ int	printd_width(t_fd *info,int bufsize, char blank, char *temp)
 {
 	char	*ret;
 
-	ret = (char*)ft_calloc(info->width, sizeof(char));
-	if (!ret)
+	if (!(ret = (char*)ft_calloc(info->width, sizeof(char))))
 		return (-1);
 	if (blank == '0' && !info->sign)
 		ret[0] = '-';
@@ -63,9 +62,8 @@ int	print_number(unsigned long long n, t_fd *info)
 	blank = get_Field_blank(info);
 	len = (n == 0) ? 1 : recursive(n, info->baselen);
 	bufsize = get_Field_bufsize(info, len);
-	temp = (char*)ft_calloc(bufsize + 1, sizeof(char));
-	if (!temp)
-		return (0);
+	if (!(temp = (char*)ft_calloc(bufsize + 1, sizeof(char))))
+		return (-1);
 
 	// prec처리
 	if (blank == ' ' && !info->sign)

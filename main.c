@@ -4,7 +4,8 @@
 #include "ft_printf_util1.c"
 #include "ft_printf_util2.c"
 #include "ft_printf_util3.c"
-#include "ft_printf_util4.c"
+#include "condition.c"
+#include "mypf.c"
 
 int main(){
 
@@ -13,6 +14,6 @@ int main(){
 	int		j = -12;
 	int		l = 0;
 
- 	ft_printf("|%-05%|\n");
  	   printf("|%-05%|\n");
+ 	ft_printf("|%-05%|\n");
 }
