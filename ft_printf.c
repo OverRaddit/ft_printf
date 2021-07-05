@@ -3,14 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printf.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gshim <gshim@student.42.fr>                +#+  +:+       +#+        */
+/*   By: gshim <gshim@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/03 19:45:16 by gshim             #+#    #+#             */
-<<<<<<< HEAD
-/*   Updated: 2021/07/04 23:58:50 by gshim            ###   ########.fr       */
-=======
-/*   Updated: 2021/07/04 21:42:33 by gshim            ###   ########.fr       */
->>>>>>> f2c05612212358a1dee2764f9afb8ce7d120f70e
+/*   Updated: 2021/07/05 01:32:44 by gshim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,9 +15,7 @@
 int	mypf_handle(va_list *ap, t_fd *info)
 {
 	long long	num;
-	int			ret;
 
-	ret = 0;
 	if (info->format == 'd' || info->format == 'i')
 	{
 		num = va_arg(*ap, int);
@@ -30,19 +24,19 @@ int	mypf_handle(va_list *ap, t_fd *info)
 			info->sign = 0;
 			num *= -1;
 		}
-		ret = print_number(num, info);
+		return (print_number(num, info));
 	}
 	else if (info->format == 'c')
-		ret = print_char(va_arg(*ap, int), info);
+		return (print_char(va_arg(*ap, int), info));
 	else if (info->format == '%')
-		ret = print_char('%', info);
+		return (print_char('%', info));
 	else if (info->format == 's')
-		ret = print_str(va_arg(*ap, char *), info);
+		return (print_str(va_arg(*ap, char *), info));
 	else if (info->format == 'p')
-		ret = print_address(va_arg(*ap, unsigned long long), info);
+		return (print_address(va_arg(*ap, unsigned long long), info));
 	else if (info->format == 'u' || info->format == 'x' || info->format == 'X')
-		ret = print_number(va_arg(*ap, unsigned int), info);
-	return (ret);
+		return (print_number(va_arg(*ap, unsigned int), info));
+	return (-1);
 }
 
 void	get_Field_fwp(const char *field, int *i, t_fd *info, va_list *ap)
@@ -112,17 +106,18 @@ t_fd	*get_Field(va_list *ap, const char *field)
 	return (info);
 }
 
-// int	handle_Field(va_list ap, const char *str, int i)
-// {
-// 	fieldlen = 0;
-// 	info = get_Field(&ap, ft_fielddup(str + i + 1, &fieldlen));
-// 	i += fieldlen + 2;
-// 	if (mypf_handle(&ap, info) == -1)
-// 		return (-1);
-// 	totalbyte += info->ret;
-// 	free(info);
-// 	continue ;
-// }
+int	handle_Field(va_list *ap, const char *str, int *i, int *totalbyte)
+{
+	t_fd	*info;
+
+	info = get_Field(ap, str + (*i) + 1);
+	(*i) += get_Fieldlen(str + (*i) + 1) + 2;
+	if (mypf_handle(ap, info) == -1)
+		return (-1);
+	(*totalbyte) += info->ret;
+	free(info);
+	return (0);
+}
 
 int	get_Fieldlen(const char *str)
 {
@@ -137,7 +132,6 @@ int	get_Fieldlen(const char *str)
 int	ft_printf(const char *str, ...)
 {
 	va_list	ap;
-	t_fd	*info;
 	int		i;
 	int		totalbyte;
 
@@ -148,12 +142,8 @@ int	ft_printf(const char *str, ...)
 	{
 		if (str[i] == '%')
 		{
-			info = get_Field(&ap, str + i + 1);
-			i += get_Fieldlen(str + i + 1) + 2;
-			if (mypf_handle(&ap, info) == -1)
+			if (handle_Field(&ap, str, &i, &totalbyte) == -1)
 				return (-1);
-			totalbyte += info->ret;
-			free(info);
 			continue ;
 		}
 		write(1, &str[i++], 1);

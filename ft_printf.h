@@ -6,7 +6,7 @@
 /*   By: gshim <gshim@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/29 20:15:39 by gshim             #+#    #+#             */
-/*   Updated: 2021/07/05 00:03:28 by gshim            ###   ########.fr       */
+/*   Updated: 2021/07/05 01:16:52 by gshim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,8 @@ int		mypf_handle(va_list *ap, t_fd *info);
 void	get_Field_fwp(const char *field, int *i, t_fd *info, va_list *ap);
 void	get_Field_digit(t_fd *info);
 t_fd*	get_Field(va_list *ap, const char *field);
+int	handle_Field(va_list *ap, const char *str, int *i, int *totalbyte);
+int	get_Fieldlen(const char *str);
 int		ft_printf(const char *one,...);
 
 //mypf

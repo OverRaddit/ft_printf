@@ -6,7 +6,7 @@
 /*   By: gshim <gshim@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/04 14:14:54 by gshim             #+#    #+#             */
-/*   Updated: 2021/07/05 00:03:20 by gshim            ###   ########.fr       */
+/*   Updated: 2021/07/05 01:35:02 by gshim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -120,7 +120,6 @@ int	print_str(char *str, t_fd *info)
 	int		bufsize;
 	int		len;
 
-	// .s, .0s 같이 나오면 출력하지 않는다.
 	if (str == 0)
 		str = "(null)";
 	if (info->precbit == 1 && info->prec == 0 && info->format == 's')
