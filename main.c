@@ -6,6 +6,8 @@
 #include "ft_printf_util3.c"
 #include "condition.c"
 #include "mypf.c"
+#include "print_number.c"
+#include "parse.c"
 
 int main(){
 
@@ -14,6 +16,6 @@ int main(){
 	int		j = -12;
 	int		l = 0;
 
- 	   printf("|%-05%|\n");
- 	ft_printf("|%-05%|\n");
+ 	   printf("|%-5s|\n","123");
+ 	ft_printf("|%-5s|\n","123");
 }

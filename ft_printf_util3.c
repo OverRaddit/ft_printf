@@ -6,20 +6,20 @@
 /*   By: gshim <gshim@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/29 20:34:26 by gshim             #+#    #+#             */
-/*   Updated: 2021/07/04 20:57:15 by gshim            ###   ########.fr       */
+/*   Updated: 2021/07/05 17:32:15 by gshim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-unsigned long long	recursive(unsigned long long n, int baselen)
+ULL	recursive(ULL n, int baselen)
 {
 	if (n == 0)
 		return (0);
 	return (1 + recursive(n / baselen, baselen));
 }
 
-char	*ft_uitoa(unsigned long long n, char *digit, int baselen)
+char	*ft_uitoa(ULL n, char *digit, int baselen)
 {
 	int			len;
 	char		*ret;
@@ -58,7 +58,7 @@ char	*ft_fielddup(const char *src, int *len)
 	return (str);
 }
 
-char	*ft_xtoa(unsigned long long number)
+char	*ft_xtoa(ULL number)
 {
 	int		len;
 	char	*ret;

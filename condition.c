@@ -6,13 +6,13 @@
 /*   By: gshim <gshim@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/04 16:40:23 by gshim             #+#    #+#             */
-/*   Updated: 2021/07/04 20:40:20 by gshim            ###   ########.fr       */
+/*   Updated: 2021/07/05 20:55:59 by gshim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-char	get_Field_blank(t_fd *info)
+char	get_ps_blank(t_fd *info)
 {
 	char	blank;
 
@@ -20,33 +20,36 @@ char	get_Field_blank(t_fd *info)
 	if (info->format == 'c' || info->format == 's' || info->format == 'p')
 		blank = ' ';
 	else if (info->flag == '0')
-		blank = (info->flag == '0') ? '0' : ' ';
+		blank = '0';
 	return (blank);
 }
 
-int	get_Field_bufsize(t_fd *info, int len)
+int	get_ps_bufsize(t_fd *info, int len)
 {
 	int	bufsize;
 
-	bufsize = (len < info->prec && info->prec > 0) ? info->prec : len;
-	bufsize = (!info->sign) ? bufsize + 1 : bufsize;
+	if (info->format == 's' || info->format == 'p')
+		bufsize = (len > info->prec && info->prec > 0) ? info->prec : len;
+	else
+	{
+		bufsize = (len < info->prec && info->prec > 0) ? info->prec : len;
+		bufsize = (!info->sign) ? bufsize + 1 : bufsize;
+	}
 	return (bufsize);
 }
 
-// void	print_width(t_fd *info,int bufsize, char blank, char *temp)
-// {
-// 	char	*buf;
+t_ps	*ps_init(t_fd *info, ULL n)
+{
+	t_ps	*ps;
 
-// 	buf = (char*)ft_calloc(info->width, sizeof(char));
-// 	if (blank == '0' && !info->sign)
-// 		buf[0] = '-';
-// 	if (info->flag != '-')
-// 		ft_memset(buf + (buf[0] == '-'), blank, info->width - bufsize);
-// 	ft_strncat(buf, temp, bufsize);
-// 	if (info->flag == '-')
-// 		ft_memset(buf + bufsize, blank, info->width - bufsize);
-// 	write(1, buf, info->width);
-// 	info->buf = info->width;
-// 	free(buf);
-// 	//free(temp);
-// }
+	ps = (t_ps *)ft_calloc(1, sizeof(t_ps));
+	if (ps == 0)
+		return (ps);
+	ps->blank = get_ps_blank(info);
+	if (n == 0)
+		ps->len = 1;
+	else
+		ps->len = recursive(n, info->baselen);
+	ps->bufsize = get_ps_bufsize(info, ps->len);
+	return (ps);
+}
