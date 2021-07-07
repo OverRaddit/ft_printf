@@ -6,7 +6,7 @@
 /*   By: gshim <gshim@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/29 20:15:39 by gshim             #+#    #+#             */
-/*   Updated: 2021/07/07 17:51:50 by gshim            ###   ########.fr       */
+/*   Updated: 2021/07/07 20:11:59 by gshim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@ typedef struct s_fd
 	int		ret;
 	int		precbit;
 	int		sign;
+	char	signchar;
 	char	*digit;
 	int		baselen;
 }	t_fd;
@@ -76,5 +77,6 @@ int		print_address(t_ULL n, t_fd *info);
 
 char	get_ps_blank(t_fd *info);
 int		get_ps_bufsize(t_fd *info, int len);
+char	get_ps_signchar(t_fd *info);
 t_ps	*ps_init(t_fd *info, t_ULL n);
 #endif

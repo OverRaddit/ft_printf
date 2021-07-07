@@ -6,7 +6,7 @@
 /*   By: gshim <gshim@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/05 17:42:04 by gshim             #+#    #+#             */
-/*   Updated: 2021/07/07 17:23:01 by gshim            ###   ########.fr       */
+/*   Updated: 2021/07/07 20:41:05 by gshim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,10 +19,11 @@ char	*printd_prec(t_fd *info, t_ps *ps, t_ULL n)
 	temp = (char *)ft_calloc((ps->bufsize) + 1, sizeof(char));
 	if (!temp)
 		return (0);
-	if (ps->blank == ' ' && !info->sign)
-		temp[0] = '-';
+	if (ps->blank == ' ' && info->signchar != '?')
+		temp[0] = info->signchar;
 	if (ps->len < info->prec)
-		ft_memset(temp + (temp[0] == '-'), '0', info->prec - ps->len);
+		ft_memset(temp + (temp[0] == info->signchar), '0',
+			info->prec - ps->len);
 	if (n == 0 && info->precbit == 1 && info->prec == 0)
 		(ps->bufsize)--;
 	else
@@ -37,10 +38,11 @@ int	printd_width(t_fd *info, t_ps *ps, char *temp)
 	ret = (char *)ft_calloc(info->width, sizeof(char));
 	if (!ret)
 		return (-1);
-	if (ps->blank == '0' && !info->sign)
-		ret[0] = '-';
+	if (ps->blank == '0' && info->signchar != '?')
+		ret[0] = info->signchar;
 	if (info->flag != '-')
-		ft_memset(ret + (ret[0] == '-'), ps->blank, info->width - ps->bufsize);
+		ft_memset(ret + (ret[0] == info->signchar), ps->blank,
+			info->width - ps->bufsize);
 	ft_strncat(ret, temp, ps->bufsize);
 	if (info->flag == '-')
 		ft_memset(ret + ps->bufsize, ps->blank, info->width - ps->bufsize);
@@ -57,7 +59,8 @@ int	print_number(t_ULL n, t_fd *info)
 	t_ps	*ps;
 
 	if (info->flag == '0' && info->precbit == 1)
-		info->flag = ' ';
+		info->flag = 'x';
+	info->signchar = get_ps_signchar(info);
 	ps = ps_init(info, n);
 	temp = printd_prec(info, ps, n);
 	if (!temp)
@@ -68,6 +71,7 @@ int	print_number(t_ULL n, t_fd *info)
 	if (ps->blank != ' ' && !info->sign)
 		write(1, "-", 1);
 	write(1, temp, ft_strlen(temp));
+	free(ps);
 	free(temp);
 	return (0);
 }
