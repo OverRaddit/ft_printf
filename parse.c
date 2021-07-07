@@ -6,7 +6,7 @@
 /*   By: gshim <gshim@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/05 17:57:39 by gshim             #+#    #+#             */
-/*   Updated: 2021/07/05 18:00:32 by gshim            ###   ########.fr       */
+/*   Updated: 2021/07/05 21:03:45 by gshim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,8 @@ void	get_Field_digit(t_fd *info)
 		info->digit = "0123456789abcdef";
 	else if (info->format == 'X')
 		info->digit = "0123456789ABCDEF";
+	else if (info->format == 'o')
+		info->digit = "01234567";
 	else if (info->format == 'd' || info->format == 'i' || info->format == 'u')
 		info->digit = "0123456789";
 	if (info->digit != 0)

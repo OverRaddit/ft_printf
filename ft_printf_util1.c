@@ -6,7 +6,7 @@
 /*   By: gshim <gshim@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/29 20:30:41 by gshim             #+#    #+#             */
-/*   Updated: 2021/07/04 20:45:40 by gshim            ###   ########.fr       */
+/*   Updated: 2021/07/05 21:01:41 by gshim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ int	is_format(char c)
 {
 	char	*formats;
 
-	formats = "cspdiuxX%";
+	formats = "cspdiuxX%o";
 	if (!((c >= 'a' && c <= 'z') || (c >= 'A' && c <= 'Z') || c == '%'))
 		return (0);
 	while (*formats)

@@ -6,13 +6,12 @@
 /*   By: gshim <gshim@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/29 20:32:55 by gshim             #+#    #+#             */
-/*   Updated: 2021/07/04 21:02:08 by gshim            ###   ########.fr       */
+/*   Updated: 2021/07/07 17:24:06 by gshim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-// atoi 살짝수정함.
 int	ft_atoi(const char *str, int *i)
 {
 	char		*s;

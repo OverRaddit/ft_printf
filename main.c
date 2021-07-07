@@ -16,6 +16,6 @@ int main(){
 	int		j = -12;
 	int		l = 0;
 
- 	   printf("|%-5s|\n","123");
- 	ft_printf("|%-5s|\n","123");
+ 	   printf("%.*o\n", -3, 12345);
+ 	ft_printf("%.*o\n", -3, 12345);
 }

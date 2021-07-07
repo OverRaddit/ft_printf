@@ -6,7 +6,7 @@
 /*   By: gshim <gshim@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/04 14:14:54 by gshim             #+#    #+#             */
-/*   Updated: 2021/07/05 20:54:43 by gshim            ###   ########.fr       */
+/*   Updated: 2021/07/07 17:22:42 by gshim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ int	print_char(char c, t_fd *info)
 	int		bufsize;
 	char	blank;
 
-	blank = get_pf_blank(info);
+	blank = get_ps_blank(info);
 	bufsize = 1;
 	if (bufsize < info->width)
 	{
@@ -47,7 +47,7 @@ int	print_str(char *str, t_fd *info)
 		str = "(null)";
 	if (info->precbit == 1 && info->prec == 0 && info->format == 's')
 		str = "";
-	bufsize = get_pf_bufsize(info, ft_strlen(str));
+	bufsize = get_ps_bufsize(info, ft_strlen(str));
 	if (bufsize < info->width)
 	{
 		ret = (char *)ft_calloc(info->width, sizeof(char));
@@ -66,7 +66,7 @@ int	print_str(char *str, t_fd *info)
 	return (0);
 }
 
-int	print_address(ULL n, t_fd *info)
+int	print_address(t_ULL n, t_fd *info)
 {
 	char	*temp;
 	int		len;

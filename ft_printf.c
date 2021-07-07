@@ -6,7 +6,7 @@
 /*   By: gshim <gshim@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/03 19:45:16 by gshim             #+#    #+#             */
-/*   Updated: 2021/07/05 19:49:46 by gshim            ###   ########.fr       */
+/*   Updated: 2021/07/07 17:22:27 by gshim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ int	mypf_handle(va_list *ap, t_fd *info)
 {
 	long long	num;
 
-	if (info->format == 'd' || info->format == 'i')
+	if (info->format == 'd' || info->format == 'i' || info->format == 'o')
 	{
 		num = va_arg(*ap, int);
 		if (num < 0)
@@ -33,7 +33,7 @@ int	mypf_handle(va_list *ap, t_fd *info)
 	else if (info->format == 's')
 		return (print_str(va_arg(*ap, char *), info));
 	else if (info->format == 'p')
-		return (print_address(va_arg(*ap, ULL), info));
+		return (print_address(va_arg(*ap, t_ULL), info));
 	else if (info->format == 'u' || info->format == 'x' || info->format == 'X')
 		return (print_number(va_arg(*ap, unsigned int), info));
 	return (-1);

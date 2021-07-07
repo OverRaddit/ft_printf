@@ -6,13 +6,13 @@
 /*   By: gshim <gshim@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/05 17:42:04 by gshim             #+#    #+#             */
-/*   Updated: 2021/07/05 20:55:52 by gshim            ###   ########.fr       */
+/*   Updated: 2021/07/07 17:23:01 by gshim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-char	*printd_prec(t_fd *info, t_ps *ps, ULL n)
+char	*printd_prec(t_fd *info, t_ps *ps, t_ULL n)
 {
 	char	*temp;
 
@@ -51,7 +51,7 @@ int	printd_width(t_fd *info, t_ps *ps, char *temp)
 	return (0);
 }
 
-int	print_number(ULL n, t_fd *info)
+int	print_number(t_ULL n, t_fd *info)
 {
 	char	*temp;
 	t_ps	*ps;
