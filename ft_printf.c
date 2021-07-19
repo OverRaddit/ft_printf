@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printf.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gshim <gshim@student.42.fr>                +#+  +:+       +#+        */
+/*   By: gshim <gshim@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/03 19:45:16 by gshim             #+#    #+#             */
-/*   Updated: 2021/07/07 17:22:27 by gshim            ###   ########.fr       */
+/*   Updated: 2021/07/09 12:21:23 by gshim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,19 @@ int	mypf_handle(va_list *ap, t_fd *info)
 	else if (info->format == 'u' || info->format == 'x' || info->format == 'X')
 		return (print_number(va_arg(*ap, unsigned int), info));
 	return (-1);
+}
+
+int	handle_Field(va_list *ap, const char *str, int *i, int *totalbyte)
+{
+	t_fd	*info;
+
+	info = get_Field(ap, str + (*i) + 1);
+	(*i) += get_Fieldlen(str + (*i) + 1) + 2;
+	if (info == 0 || mypf_handle(ap, info) == -1)
+		return (-1);
+	(*totalbyte) += info->ret;
+	free(info);
+	return (0);
 }
 
 int	ft_printf(const char *str, ...)

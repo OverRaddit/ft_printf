@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printf_util1.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gshim <gshim@student.42.fr>                +#+  +:+       +#+        */
+/*   By: gshim <gshim@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/29 20:30:41 by gshim             #+#    #+#             */
-/*   Updated: 2021/07/05 21:01:41 by gshim            ###   ########.fr       */
+/*   Updated: 2021/07/09 11:48:32 by gshim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ int	is_flag(char c)
 {
 	char	*flags;
 
-	flags = " -0";
+	flags = "+ -0";
 	while (*flags)
 	{
 		if (c == *flags)

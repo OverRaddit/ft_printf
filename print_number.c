@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   print_number.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gshim <gshim@student.42.fr>                +#+  +:+       +#+        */
+/*   By: gshim <gshim@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/05 17:42:04 by gshim             #+#    #+#             */
-/*   Updated: 2021/07/07 17:23:01 by gshim            ###   ########.fr       */
+/*   Updated: 2021/07/19 15:33:35 by gshim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,20 +14,25 @@
 
 char	*printd_prec(t_fd *info, t_ps *ps, t_ULL n)
 {
+	char	*ret;
 	char	*temp;
 
-	temp = (char *)ft_calloc((ps->bufsize) + 1, sizeof(char));
-	if (!temp)
+	ret = (char *)ft_calloc((ps->bufsize) + 1, sizeof(char));
+	if (!ret)
 		return (0);
 	if (ps->blank == ' ' && !info->sign)
-		temp[0] = '-';
+		ret[0] = '-';
 	if (ps->len < info->prec)
-		ft_memset(temp + (temp[0] == '-'), '0', info->prec - ps->len);
+		ft_memset(ret + (ret[0] == '-'), '0', info->prec - ps->len);
 	if (n == 0 && info->precbit == 1 && info->prec == 0)
 		(ps->bufsize)--;
 	else
-		ft_strcat(temp, ft_uitoa(n, info->digit, info->baselen));
-	return (temp);
+	{
+		temp = ft_uitoa(n, info->digit, info->baselen);
+		ft_strcat(ret, temp);
+		free(temp);
+	}
+	return (ret);
 }
 
 int	printd_width(t_fd *info, t_ps *ps, char *temp)
@@ -68,6 +73,7 @@ int	print_number(t_ULL n, t_fd *info)
 	if (ps->blank != ' ' && !info->sign)
 		write(1, "-", 1);
 	write(1, temp, ft_strlen(temp));
+	free(ps);
 	free(temp);
 	return (0);
 }

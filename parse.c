@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gshim <gshim@student.42.fr>                +#+  +:+       +#+        */
+/*   By: gshim <gshim@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/05 17:57:39 by gshim             #+#    #+#             */
-/*   Updated: 2021/07/05 21:03:45 by gshim            ###   ########.fr       */
+/*   Updated: 2021/07/09 12:21:16 by gshim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,6 +68,19 @@ t_fd	*get_Field(va_list *ap, const char *field)
 	get_Field_fwp(field, &i, info, ap);
 	if (is_format(field[i]))
 		info->format = field[i];
+	if (get_Field_exception(info) == -1)
+		return (0);
+	get_Field_digit(info);
+	return (info);
+}
+
+int	get_Field_exception(t_fd *info)
+{
+	if (info->width == INT_MIN)
+	{
+		free(info);
+		return (-1);
+	}
 	if (info->width < 0)
 	{
 		info->width *= -1;
@@ -78,20 +91,6 @@ t_fd	*get_Field(va_list *ap, const char *field)
 		info->precbit = 0;
 		info->prec = 0;
 	}
-	get_Field_digit(info);
-	return (info);
-}
-
-int	handle_Field(va_list *ap, const char *str, int *i, int *totalbyte)
-{
-	t_fd	*info;
-
-	info = get_Field(ap, str + (*i) + 1);
-	(*i) += get_Fieldlen(str + (*i) + 1) + 2;
-	if (info == 0 || mypf_handle(ap, info) == -1)
-		return (-1);
-	(*totalbyte) += info->ret;
-	free(info);
 	return (0);
 }
 

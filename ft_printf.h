@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printf.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gshim <gshim@student.42.fr>                +#+  +:+       +#+        */
+/*   By: gshim <gshim@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/29 20:15:39 by gshim             #+#    #+#             */
-/*   Updated: 2021/07/07 17:51:50 by gshim            ###   ########.fr       */
+/*   Updated: 2021/07/09 12:21:05 by gshim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@ typedef struct s_fd
 	int		ret;
 	int		precbit;
 	int		sign;
+	char	signchar;
 	char	*digit;
 	int		baselen;
 }	t_fd;
@@ -59,11 +60,12 @@ char	*ft_xtoa(t_ULL number);
 
 int		mypf_handle(va_list *ap, t_fd *info);
 int		ft_printf(const char *one, ...);
-
 int		handle_Field(va_list *ap, const char *str, int *i, int *totalbyte);
+
 t_fd	*get_Field(va_list *ap, const char *field);
 void	get_Field_fwp(const char *field, int *i, t_fd *info, va_list *ap);
 void	get_Field_digit(t_fd *info);
+int		get_Field_exception(t_fd *info);
 int		get_Fieldlen(const char *str);
 
 char	*printd_prec(t_fd *info, t_ps *ps, t_ULL n);
@@ -76,5 +78,6 @@ int		print_address(t_ULL n, t_fd *info);
 
 char	get_ps_blank(t_fd *info);
 int		get_ps_bufsize(t_fd *info, int len);
+char	get_ps_signchar(t_fd *info);
 t_ps	*ps_init(t_fd *info, t_ULL n);
 #endif

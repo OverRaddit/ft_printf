@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   mypf.c                                             :+:      :+:    :+:   */
+/*   print.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gshim <gshim@student.42.fr>                +#+  +:+       +#+        */
+/*   By: gshim <gshim@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/04 14:14:54 by gshim             #+#    #+#             */
-/*   Updated: 2021/07/07 17:22:42 by gshim            ###   ########.fr       */
+/*   Updated: 2021/07/19 15:57:54 by gshim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ int	print_char(char c, t_fd *info)
 		return (0);
 	}
 	info->ret = write(1, &c, bufsize);
-	return (0);
+	return (info->ret);
 }
 
 int	print_str(char *str, t_fd *info)
@@ -60,14 +60,15 @@ int	print_str(char *str, t_fd *info)
 			ft_memset(ret + bufsize, ' ', info->width - bufsize);
 		info->ret = write(1, ret, info->width);
 		free(ret);
-		return (0);
+		return (info->ret);
 	}
 	info->ret = write(1, str, bufsize);
-	return (0);
+	return (info->ret);
 }
 
 int	print_address(t_ULL n, t_fd *info)
 {
+	char	*ret;
 	char	*temp;
 	int		len;
 
@@ -80,11 +81,13 @@ int	print_address(t_ULL n, t_fd *info)
 		len = 1 + 2;
 	else
 		len = recursive(n, 16) + 2;
-	temp = ft_calloc(len + 1, sizeof(char));
-	if (!temp)
+	ret = ft_calloc(len + 1, sizeof(char));
+	if (!ret)
 		return (-1);
-	ft_strncat(temp, ft_xtoa(n), len);
-	print_str(temp, info);
+	temp = ft_xtoa(n);
+	ft_strncat(ret, temp, len);
+	print_str(ret, info);
+	free(ret);
 	free(temp);
-	return (0);
+	return (info->ret);
 }

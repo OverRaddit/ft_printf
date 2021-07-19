@@ -4,8 +4,8 @@
 #include "ft_printf_util1.c"
 #include "ft_printf_util2.c"
 #include "ft_printf_util3.c"
-#include "condition.c"
-#include "mypf.c"
+#include "print.c"
+#include "print_get.c"
 #include "print_number.c"
 #include "parse.c"
 
@@ -18,4 +18,6 @@ int main(){
 
  	   printf("%.*o\n", -3, 12345);
  	ft_printf("%.*o\n", -3, 12345);
+	 while(1){
+	 }
 }
