@@ -6,7 +6,7 @@
 /*   By: gshim <gshim@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/04 16:40:23 by gshim             #+#    #+#             */
-/*   Updated: 2021/07/07 17:52:47 by gshim            ###   ########.fr       */
+/*   Updated: 2021/07/07 18:55:42 by gshim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,18 +24,37 @@ char	get_ps_blank(t_fd *info)
 	return (blank);
 }
 
-int		get_ps_bufsize(t_fd *info, int len)
+int	get_ps_bufsize(t_fd *info, int len)
 {
 	if (info->format == 's' || info->format == 'p')
+	{
 		if (len > info->prec && info->prec > 0)
 			return (info->prec);
 		else
 			return (len);
+	}
 	else
+	{
 		if (len < info->prec && info->prec > 0)
 			return (info->prec + !info->sign);
 		else
 			return (len + !info->sign);
+	}
+}
+
+char	get_ps_signchar(t_fd *info)
+{
+	if (info->sign == 0)
+		return ('-');
+	else
+	{
+		if (info->flag == '+')
+			return ('+');
+		else if (info->flag == ' ')
+			return (' ');
+		else
+			return ('?');
+	}
 }
 
 t_ps	*ps_init(t_fd *info, t_ULL n)

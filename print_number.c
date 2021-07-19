@@ -6,7 +6,7 @@
 /*   By: gshim <gshim@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/05 17:42:04 by gshim             #+#    #+#             */
-/*   Updated: 2021/07/19 15:33:35 by gshim            ###   ########.fr       */
+/*   Updated: 2021/07/19 16:01:21 by gshim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,10 +42,11 @@ int	printd_width(t_fd *info, t_ps *ps, char *temp)
 	ret = (char *)ft_calloc(info->width, sizeof(char));
 	if (!ret)
 		return (-1);
-	if (ps->blank == '0' && !info->sign)
-		ret[0] = '-';
+	if (ps->blank == '0' && info->signchar != '?')
+		ret[0] = info->signchar;
 	if (info->flag != '-')
-		ft_memset(ret + (ret[0] == '-'), ps->blank, info->width - ps->bufsize);
+		ft_memset(ret + (ret[0] == info->signchar), ps->blank,
+			info->width - ps->bufsize);
 	ft_strncat(ret, temp, ps->bufsize);
 	if (info->flag == '-')
 		ft_memset(ret + ps->bufsize, ps->blank, info->width - ps->bufsize);
@@ -62,7 +63,8 @@ int	print_number(t_ULL n, t_fd *info)
 	t_ps	*ps;
 
 	if (info->flag == '0' && info->precbit == 1)
-		info->flag = ' ';
+		info->flag = 'x';
+	info->signchar = get_ps_signchar(info);
 	ps = ps_init(info, n);
 	temp = printd_prec(info, ps, n);
 	if (!temp)
