@@ -6,7 +6,7 @@
 /*   By: gshim <gshim@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/05 17:42:04 by gshim             #+#    #+#             */
-/*   Updated: 2021/07/19 16:01:21 by gshim            ###   ########.fr       */
+/*   Updated: 2021/07/24 12:12:34 by gshim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,10 +20,14 @@ char	*printd_prec(t_fd *info, t_ps *ps, t_ULL n)
 	ret = (char *)ft_calloc((ps->bufsize) + 1, sizeof(char));
 	if (!ret)
 		return (0);
+	/*
 	if (ps->blank == ' ' && !info->sign)
 		ret[0] = '-';
+	*/
+	if (ps->blank == ' ' && info->signchar != '?')
+		ret[0] = info->signchar;
 	if (ps->len < info->prec)
-		ft_memset(ret + (ret[0] == '-'), '0', info->prec - ps->len);
+		ft_memset(ret + (ret[0] == info->signchar), '0', info->prec - ps->len);
 	if (n == 0 && info->precbit == 1 && info->prec == 0)
 		(ps->bufsize)--;
 	else

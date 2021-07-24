@@ -6,7 +6,7 @@
 /*   By: gshim <gshim@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/05 17:57:39 by gshim             #+#    #+#             */
-/*   Updated: 2021/07/19 16:02:23 by gshim            ###   ########.fr       */
+/*   Updated: 2021/07/24 13:39:33 by gshim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,8 @@ void	get_Field_fwp(const char *field, int *i, t_fd *info, va_list *ap)
 {
 	while (is_flag(field[(*i)]))
 	{
+		//if (info->flag != '-' && info->flag != '+' && info->flag != ' ')
+		//if (field[(*i)] != '0')
 		if (info->flag != '-')
 			info->flag = field[(*i)];
 		(*i)++;
@@ -66,11 +68,6 @@ t_fd	*get_Field(va_list *ap, const char *field)
 	info->sign = 1;
 	i = 0;
 	get_Field_fwp(field, &i, info, ap);
-	if (info->width == INT_MIN)
-	{
-		free(info);
-		return (0);
-	}
 	if (is_format(field[i]))
 		info->format = field[i];
 	if (get_Field_exception(info) == -1)

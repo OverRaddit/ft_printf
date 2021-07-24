@@ -11,13 +11,13 @@
 #include <limits.h>
 int main(){
 
-	int		a = -4;
-	int		i = 8;
-	int		j = -12;
-	int		l = 0;
+	// int		a = -4;
+	// int		i = 8;
+	// int		j = -12;
+	// int		l = 0;
 
- 	   printf("%.*o\n", -3, 12345);
- 	ft_printf("%.*o\n", -3, 12345);
-	 while(1){
-	 }
+ 	//    printf("%.*o\n", -3, 12345);
+ 	// ft_printf("%.*o\n", -3, 12345);
+	 printf("|% *.5i|\n", 4, 42);
+	 ft_printf("|% *.5i|\n", 4, 42);
 }

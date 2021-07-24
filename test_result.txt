@@ -1,0 +1,276 @@
+
+------------------------------
+|        string.c            |
+|                            |
+------------------------------
+
+make: `libftprintf.a' is up to date.
+
+[1;32m[ OK ] - All GOOD
+[0m
+Please select: 1, 2, 3, or 4
+
+
+[ next (1) ]  |  [ show diff (2) ]  |  [ show printf results ] (3)  |  [ show ft_printf results ] (4)  |
+
+rm -f ft_printf_util1.o ft_printf_util2.o ft_printf_util3.o ft_printf.o print.o print_get.o print_number.o parse.o libftprintf.a
+------------------------------
+|        number.c            |
+|                            |
+------------------------------
+
+gcc -Wall -Wextra -Werror -c ft_printf_util1.c -o ft_printf_util1.o
+gcc -Wall -Wextra -Werror -c ft_printf_util2.c -o ft_printf_util2.o
+gcc -Wall -Wextra -Werror -c ft_printf_util3.c -o ft_printf_util3.o
+gcc -Wall -Wextra -Werror -c ft_printf.c -o ft_printf.o
+gcc -Wall -Wextra -Werror -c print.c -o print.o
+gcc -Wall -Wextra -Werror -c print_get.c -o print_get.o
+gcc -Wall -Wextra -Werror -c print_number.c -o print_number.o
+gcc -Wall -Wextra -Werror -c parse.c -o parse.o
+ar rc libftprintf.a ft_printf_util1.o ft_printf_util2.o ft_printf_util3.o ft_printf.o print.o print_get.o print_number.o parse.o
+
+[1;32m[ OK ] - All GOOD
+[0m
+Please select: 1, 2, 3, or 4
+
+
+[ next (1) ]  |  [ show diff (2) ]  |  [ show printf results ] (3)  |  [ show ft_printf results ] (4)  |
+
+rm -f ft_printf_util1.o ft_printf_util2.o ft_printf_util3.o ft_printf.o print.o print_get.o print_number.o parse.o libftprintf.a
+------------------------------
+|        char.c              |
+|                            |
+------------------------------
+
+gcc -Wall -Wextra -Werror -c ft_printf_util1.c -o ft_printf_util1.o
+gcc -Wall -Wextra -Werror -c ft_printf_util2.c -o ft_printf_util2.o
+gcc -Wall -Wextra -Werror -c ft_printf_util3.c -o ft_printf_util3.o
+gcc -Wall -Wextra -Werror -c ft_printf.c -o ft_printf.o
+gcc -Wall -Wextra -Werror -c print.c -o print.o
+gcc -Wall -Wextra -Werror -c print_get.c -o print_get.o
+gcc -Wall -Wextra -Werror -c print_number.c -o print_number.o
+gcc -Wall -Wextra -Werror -c parse.c -o parse.o
+ar rc libftprintf.a ft_printf_util1.o ft_printf_util2.o ft_printf_util3.o ft_printf.o print.o print_get.o print_number.o parse.o
+
+[1;32m[ OK ] - All GOOD
+[0m
+Please select: 1, 2, 3, or 4
+
+
+[ next (1) ]  |  [ show diff (2) ]  |  [ show printf results ] (3)  |  [ show ft_printf results ] (4)  |
+
+rm -f ft_printf_util1.o ft_printf_util2.o ft_printf_util3.o ft_printf.o print.o print_get.o print_number.o parse.o libftprintf.a
+------------------------------
+|        unsigned_int.c      |
+|                            |
+------------------------------
+
+gcc -Wall -Wextra -Werror -c ft_printf_util1.c -o ft_printf_util1.o
+gcc -Wall -Wextra -Werror -c ft_printf_util2.c -o ft_printf_util2.o
+gcc -Wall -Wextra -Werror -c ft_printf_util3.c -o ft_printf_util3.o
+gcc -Wall -Wextra -Werror -c ft_printf.c -o ft_printf.o
+gcc -Wall -Wextra -Werror -c print.c -o print.o
+gcc -Wall -Wextra -Werror -c print_get.c -o print_get.o
+gcc -Wall -Wextra -Werror -c print_number.c -o print_number.o
+gcc -Wall -Wextra -Werror -c parse.c -o parse.o
+ar rc libftprintf.a ft_printf_util1.o ft_printf_util2.o ft_printf_util3.o ft_printf.o print.o print_get.o print_number.o parse.o
+
+[1;32m[ OK ] - All GOOD
+[0m
+Please select: 1, 2, 3, or 4
+
+
+[ next (1) ]  |  [ show diff (2) ]  |  [ show printf results ] (3)  |  [ show ft_printf results ] (4)  |
+
+rm -f ft_printf_util1.o ft_printf_util2.o ft_printf_util3.o ft_printf.o print.o print_get.o print_number.o parse.o libftprintf.a
+------------------------------
+|        hexa.c              |
+|                            |
+------------------------------
+
+gcc -Wall -Wextra -Werror -c ft_printf_util1.c -o ft_printf_util1.o
+gcc -Wall -Wextra -Werror -c ft_printf_util2.c -o ft_printf_util2.o
+gcc -Wall -Wextra -Werror -c ft_printf_util3.c -o ft_printf_util3.o
+gcc -Wall -Wextra -Werror -c ft_printf.c -o ft_printf.o
+gcc -Wall -Wextra -Werror -c print.c -o print.o
+gcc -Wall -Wextra -Werror -c print_get.c -o print_get.o
+gcc -Wall -Wextra -Werror -c print_number.c -o print_number.o
+gcc -Wall -Wextra -Werror -c parse.c -o parse.o
+ar rc libftprintf.a ft_printf_util1.o ft_printf_util2.o ft_printf_util3.o ft_printf.o print.o print_get.o print_number.o parse.o
+
+[1;32m[ OK ] - All GOOD
+[0m
+Please select: 1, 2, 3, or 4
+
+
+[ next (1) ]  |  [ show diff (2) ]  |  [ show printf results ] (3)  |  [ show ft_printf results ] (4)  |
+
+rm -f ft_printf_util1.o ft_printf_util2.o ft_printf_util3.o ft_printf.o print.o print_get.o print_number.o parse.o libftprintf.a
+------------------------------
+|        percent.c           |
+|                            |
+------------------------------
+
+gcc -Wall -Wextra -Werror -c ft_printf_util1.c -o ft_printf_util1.o
+gcc -Wall -Wextra -Werror -c ft_printf_util2.c -o ft_printf_util2.o
+gcc -Wall -Wextra -Werror -c ft_printf_util3.c -o ft_printf_util3.o
+gcc -Wall -Wextra -Werror -c ft_printf.c -o ft_printf.o
+gcc -Wall -Wextra -Werror -c print.c -o print.o
+gcc -Wall -Wextra -Werror -c print_get.c -o print_get.o
+gcc -Wall -Wextra -Werror -c print_number.c -o print_number.o
+gcc -Wall -Wextra -Werror -c parse.c -o parse.o
+ar rc libftprintf.a ft_printf_util1.o ft_printf_util2.o ft_printf_util3.o ft_printf.o print.o print_get.o print_number.o parse.o
+
+[1;32m[ OK ] - All GOOD
+[0m
+Please select: 1, 2, 3, or 4
+
+
+[ next (1) ]  |  [ show diff (2) ]  |  [ show printf results ] (3)  |  [ show ft_printf results ] (4)  |
+
+rm -f ft_printf_util1.o ft_printf_util2.o ft_printf_util3.o ft_printf.o print.o print_get.o print_number.o parse.o libftprintf.a
+------------------------------
+|        pointer.c           |
+|                            |
+------------------------------
+
+gcc -Wall -Wextra -Werror -c ft_printf_util1.c -o ft_printf_util1.o
+gcc -Wall -Wextra -Werror -c ft_printf_util2.c -o ft_printf_util2.o
+gcc -Wall -Wextra -Werror -c ft_printf_util3.c -o ft_printf_util3.o
+gcc -Wall -Wextra -Werror -c ft_printf.c -o ft_printf.o
+gcc -Wall -Wextra -Werror -c print.c -o print.o
+gcc -Wall -Wextra -Werror -c print_get.c -o print_get.o
+gcc -Wall -Wextra -Werror -c print_number.c -o print_number.o
+gcc -Wall -Wextra -Werror -c parse.c -o parse.o
+ar rc libftprintf.a ft_printf_util1.o ft_printf_util2.o ft_printf_util3.o ft_printf.o print.o print_get.o print_number.o parse.o
+1 [0x16b8eb680]15					      |	1 [0x16b1cb680]15
+1.1 [0x16b8eb680]17					      |	1.1 [0x16b1cb680]17
+3 ! [0x16b8eb680]17					      |	3 ! [0x16b1cb680]17
+3.4 ![0x16b8eb680]18					      |	3.4 ![0x16b1cb680]18
+5 [0x16b8eb680]15					      |	5 [0x16b1cb680]15
+10 [0x16b8eb680                                               |	10 [0x16b1cb680                                              
+10 [0x16b8eb680]16					      |	10 [0x16b1cb680]16
+10 [0x16b8eb680]16					      |	10 [0x16b1cb680]16
+10 [0x16b8eb680]16					      |	10 [0x16b1cb680]16
+10 [0x16b8eb680]16					      |	10 [0x16b1cb680]16
+10 [                                                          |	10 [                                                         
+10 [                                                          |	10 [                                                         
+1 [0x16b8eb684]15					      |	1 [0x16b1cb684]15
+1.1 [0x16b8eb684]17					      |	1.1 [0x16b1cb684]17
+3 ! [0x16b8eb684]17					      |	3 ! [0x16b1cb684]17
+3.4 ![0x16b8eb684]18					      |	3.4 ![0x16b1cb684]18
+5 [0x16b8eb684]15					      |	5 [0x16b1cb684]15
+10 [0x16b8eb684                                               |	10 [0x16b1cb684                                              
+10 [0x16b8eb684]16					      |	10 [0x16b1cb684]16
+10 [0x16b8eb684]16					      |	10 [0x16b1cb684]16
+10 [0x16b8eb684]16					      |	10 [0x16b1cb684]16
+10 [0x16b8eb684]16					      |	10 [0x16b1cb684]16
+10 [                                                          |	10 [                                                         
+10 [                                                          |	10 [                                                         
+1 [0x16b8eb688]15					      |	1 [0x16b1cb688]15
+1.1 [0x16b8eb688]17					      |	1.1 [0x16b1cb688]17
+3 ! [0x16b8eb688]17					      |	3 ! [0x16b1cb688]17
+3.4 ![0x16b8eb688]18					      |	3.4 ![0x16b1cb688]18
+5 [0x16b8eb688]15					      |	5 [0x16b1cb688]15
+10 [0x16b8eb688                                               |	10 [0x16b1cb688                                              
+10 [0x16b8eb688]16					      |	10 [0x16b1cb688]16
+10 [0x16b8eb688]16					      |	10 [0x16b1cb688]16
+10 [0x16b8eb688]16					      |	10 [0x16b1cb688]16
+10 [0x16b8eb688]16					      |	10 [0x16b1cb688]16
+10 [                                                          |	10 [                                                         
+10 [                                                          |	10 [                                                         
+1 [0x16b8eb68c]15					      |	1 [0x16b1cb68c]15
+1.1 [0x16b8eb68c]17					      |	1.1 [0x16b1cb68c]17
+3 ! [0x16b8eb68c]17					      |	3 ! [0x16b1cb68c]17
+3.4 ![0x16b8eb68c]18					      |	3.4 ![0x16b1cb68c]18
+5 [0x16b8eb68c]15					      |	5 [0x16b1cb68c]15
+10 [0x16b8eb68c                                               |	10 [0x16b1cb68c                                              
+10 [0x16b8eb68c]16					      |	10 [0x16b1cb68c]16
+10 [0x16b8eb68c]16					      |	10 [0x16b1cb68c]16
+10 [0x16b8eb68c]16					      |	10 [0x16b1cb68c]16
+10 [0x16b8eb68c]16					      |	10 [0x16b1cb68c]16
+10 [                                                          |	10 [                                                         
+10 [                                                          |	10 [                                                         
+1 [0x16b8eb690]15					      |	1 [0x16b1cb690]15
+1.1 [0x16b8eb690]17					      |	1.1 [0x16b1cb690]17
+3 ! [0x16b8eb690]17					      |	3 ! [0x16b1cb690]17
+3.4 ![0x16b8eb690]18					      |	3.4 ![0x16b1cb690]18
+5 [0x16b8eb690]15					      |	5 [0x16b1cb690]15
+10 [0x16b8eb690                                               |	10 [0x16b1cb690                                              
+10 [0x16b8eb690]16					      |	10 [0x16b1cb690]16
+10 [0x16b8eb690]16					      |	10 [0x16b1cb690]16
+10 [0x16b8eb690]16					      |	10 [0x16b1cb690]16
+10 [0x16b8eb690]16					      |	10 [0x16b1cb690]16
+10 [                                                          |	10 [                                                         
+10 [                                                          |	10 [                                                         
+ 							      |
+ 							      |
+ 							      |
+ 							      |
+ PRINTF							      |	 FT_PRINTF
+------------------------------------------------------------------------------------------------------------------------------
+[1;32m
+[ KO ] But it's ok, it is the pointer test, you have to compare the results by yourself
+[0m
+Please select: 1, 2, 3, or 4
+
+
+[ next (1) ]  |  [ show diff (2) ]  |  [ show printf results ] (3)  |  [ show ft_printf results ] (4)  |
+
+rm -f ft_printf_util1.o ft_printf_util2.o ft_printf_util3.o ft_printf.o print.o print_get.o print_number.o parse.o libftprintf.a
+######### 42TESTERS-PRINTF ##########
+#####42TESTS-PRINTF#####
+#########PFT##########
+#########PFT_2019##########
+WARNING: The return values reported here may be bugged on some systems.$
+          See https://github.com/gavinfielder/pft/issues/11$
+          Run in non-fork mode (-X) to ensure accurate return value$
+          reporting, set IGNORE_RETURN_VALUE=1 in options-config.ini,$
+          or run test_pipes.sh to see if your system has this bug.$
+          This bug does not affect the pass/fail result of a test, nor$
+          the function output--only the reported return value.$
+$
+$
+Test 130 (s_undefbehav_0_width_9) : FAILED.$
+    First line of code: {return test("%09s", s_hidden);}$
+      expected return value : 9$
+      your return value     : 9$
+      expected output : "000hi low"$
+      your output     : "   hi low"$
+      expected (nonprintable as hex) : "000hi low"$
+      actual   (nonprintable as hex) : "   hi low"$
+$
+Test 432 (p_ftfc_literal_9w_prec2_undefbehav) : FAILED.$
+    First line of code: {return test("%9.2p$
+", 1234);}$
+      expected return value : 11$
+      your return value     : 11$
+      expected output : "    0x4d2$
+"$
+      your output     : "       0x$
+"$
+      expected (nonprintable as hex) : "    0x4d2\x0a"$
+      actual   (nonprintable as hex) : "       0x\x0a"$
+$
+Test 433 (p_ftfc_literal_2w_prec9_undefbehav) : FAILED.$
+    First line of code: {return test("%2.9p$
+", 1234);}$
+      expected return value : 13$
+      your return value     : 6$
+      expected output : "0x0000004d2$
+"$
+      your output     : "0x4d2$
+"$
+      expected (nonprintable as hex) : "0x0000004d2\x0a"$
+      actual   (nonprintable as hex) : "0x4d2\x0a"$
+$
+Test 434 (p_ftfc_zero_prec5_undefbehav) : FAILED.$
+    First line of code: {return test("%.5p", 0);}$
+      expected return value : 7$
+      your return value     : 3$
+      expected output : "0x00000"$
+      your output     : "0x0"$
+      expected (nonprintable as hex) : "0x00000"$
+      actual   (nonprintable as hex) : "0x0"$
+$
+######### printf_lover_v2 ##########
